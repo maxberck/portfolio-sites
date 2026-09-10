@@ -72,9 +72,9 @@ export const district88Site: District88SiteData = {
     image("photo-1576107232684-1279f390859f", "Poulet frit croustillant servi en street food", "FRIED / CRUNCH", "portrait"),
     image("photo-1594212699903-ec8a3eca50f5", "Burger empilé avec fromage fondu", "STACK / 88", "square"),
     image("photo-1565299624946-b28f40a0ae38", "Plat chaud partagé sur une table de restauration rapide", "PASS / HOT", "landscape"),
-    image("photo-1556911220-bff31c812dba", "Cuisine ouverte en plein service", "KITCHEN / 23:02", "landscape"),
-    image("photo-1513639776629-7b61b0ac49cb", "Assiette de street food prise de près", "NIGHT / SERVICE", "square"),
-    image("photo-1572802419224-296b0aeee0d9", "Burger servi avec un cadrage frontal", "LAST CALL", "portrait"),
+    image("photo-1771308457742-a8a609a2fdde", "Cuisinier en plein service dans une cuisine professionnelle", "KITCHEN / 23:02", "landscape", "center 48%"),
+    image("photo-1768204039115-34f404d3a59d", "Burger, frites et boisson servis sur une table métallique", "NIGHT / SERVICE", "square", "center 48%"),
+    image("photo-1644940733241-d2512327ed2b", "Burger au poulet frit tenu à la main", "LAST CALL", "portrait", "center 42%"),
   ],
   concept: {
     intro: "Une cuisine courte, construite autour du feu, du croustillant et de sauces franches. Pas de folklore : juste du goût et du rythme.",
@@ -84,7 +84,7 @@ export const district88Site: District88SiteData = {
       { title: "SAUCE", text: "Une sauce doit avoir une raison d’être. Acidité, gras ou épice — jamais du décor." },
     ],
     rule: "Chaque commande quitte le pass quand le dernier élément est prêt. Personne n’attend qu’une photo soit prise.",
-    kitchenImage: image("photo-1556911220-bff31c812dba", "Cuisine ouverte avec plan de travail métallique", "THE PASS", "landscape", "center 55%"),
+    kitchenImage: image("photo-1771308457742-a8a609a2fdde", "Cuisinier en plein service dans une cuisine professionnelle", "THE PASS", "landscape", "center 48%"),
   },
   demoDisclosure: "District 88 est une marque fictive créée pour cette démonstration de portfolio.",
 };
