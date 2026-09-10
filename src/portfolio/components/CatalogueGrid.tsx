@@ -1,27 +1,28 @@
-import { SiteCard } from "@/src/portfolio/components/SiteCard";
+import { SiteCard, type SiteCardPlacement } from "@/src/portfolio/components/SiteCard";
 import type { PortfolioSite } from "@/src/portfolio/types";
 
 type CatalogueGridProps = {
   sites: PortfolioSite[];
+  variant?: "showcase" | "category";
 };
 
-const spanPattern = ["wide", "narrow", "half", "half", "narrow", "wide"] as const;
+const showcasePlacements: SiteCardPlacement[] = ["anchor", "tall", "compact", "wide"];
+const categoryPlacements: SiteCardPlacement[] = ["wide", "standard", "standard", "wide"];
 
-type LayoutVariant = (typeof spanPattern)[number];
+export function CatalogueGrid({ sites, variant = "category" }: CatalogueGridProps) {
+  const placements = variant === "showcase" ? showcasePlacements : categoryPlacements;
 
-function getLayoutVariant(index: number): LayoutVariant {
-  return spanPattern[index % spanPattern.length];
-}
-
-export function CatalogueGrid({ sites }: CatalogueGridProps) {
   return (
-    <ul className="catalogue-grid">
+    <ul className={`catalogue-grid catalogue-grid--${variant}`}>
       {sites.map((site, index) => {
-        const variant = getLayoutVariant(index);
+        const placement = placements[index % placements.length];
 
         return (
-          <li className={`catalogue-grid__item catalogue-grid__item--${variant}`} key={site.id}>
-            <SiteCard site={site} />
+          <li
+            className={`catalogue-grid__item catalogue-grid__item--${placement}`}
+            key={site.id}
+          >
+            <SiteCard site={site} placement={placement} />
           </li>
         );
       })}

@@ -3,8 +3,11 @@ import Link from "next/link";
 
 import type { PortfolioSite } from "@/src/portfolio/types";
 
+export type SiteCardPlacement = "anchor" | "tall" | "compact" | "wide" | "standard";
+
 type SiteCardProps = {
   site: PortfolioSite;
+  placement?: SiteCardPlacement;
 };
 
 function categoryLabel(category: PortfolioSite["category"]) {
@@ -12,7 +15,7 @@ function categoryLabel(category: PortfolioSite["category"]) {
   return category.charAt(0).toUpperCase() + category.slice(1);
 }
 
-export function SiteCard({ site }: SiteCardProps) {
+export function SiteCard({ site, placement = "standard" }: SiteCardProps) {
   const hasRealPreview = site.status === "available" && Boolean(site.preview);
 
   const visual = hasRealPreview && site.preview ? (
@@ -22,7 +25,7 @@ export function SiteCard({ site }: SiteCardProps) {
         alt={site.preview.alt}
         width={site.preview.width}
         height={site.preview.height}
-        sizes="(max-width: 560px) 100vw, (max-width: 820px) 50vw, (max-width: 1100px) 58vw, 66vw"
+        sizes="(max-width: 760px) 100vw, (max-width: 1100px) 50vw, 70vw"
         style={{ objectPosition: site.preview.focalPosition ?? "center top" }}
       />
     </div>
@@ -30,20 +33,20 @@ export function SiteCard({ site }: SiteCardProps) {
     <div className="site-card__preview site-card__preview--planned">
       <span className="site-card__planned-status">En préparation</span>
       <strong>{site.direction}</strong>
+      <span className="site-card__signal" aria-hidden="true" />
     </div>
   );
 
   const details = (
     <div className="site-card__content">
-      <p className="site-card__meta">
+      <div className="site-card__meta">
         <span>{categoryLabel(site.category)}</span>
-        <span aria-hidden="true"> / </span>
         <span>{site.direction}</span>
-      </p>
+      </div>
       <h3>{site.name}</h3>
-      <p className="site-card__summary">{site.summary}</p>
+      <p>{site.summary}</p>
       <span className="site-card__status">
-        {site.status === "available" ? "Ouvrir la démo ↗" : "En préparation"}
+        {site.status === "available" ? "Ouvrir la démo ↗" : "Aperçu à venir"}
       </span>
     </div>
   );
@@ -52,6 +55,7 @@ export function SiteCard({ site }: SiteCardProps) {
     <article
       className={`site-card site-card--${site.status}`}
       data-category={site.category}
+      data-placement={placement}
       data-site-card={site.id}
     >
       {site.status === "available" ? (
