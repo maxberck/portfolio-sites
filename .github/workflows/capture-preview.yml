@@ -35,10 +35,10 @@ jobs:
         id: target
         shell: bash
         run: |
-          echo "site_id=$(node -p \"require('./preview-target.json').siteId\")" >> "$GITHUB_OUTPUT"
-          echo "route=$(node -p \"require('./preview-target.json').route\")" >> "$GITHUB_OUTPUT"
-          echo "width=$(node -p \"require('./preview-target.json').width\")" >> "$GITHUB_OUTPUT"
-          echo "height=$(node -p \"require('./preview-target.json').height\")" >> "$GITHUB_OUTPUT"
+          echo "site_id=$(node -p "require('./preview-target.json').siteId")" >> "$GITHUB_OUTPUT"
+          echo "route=$(node -p "require('./preview-target.json').route")" >> "$GITHUB_OUTPUT"
+          echo "width=$(node -p "require('./preview-target.json').width")" >> "$GITHUB_OUTPUT"
+          echo "height=$(node -p "require('./preview-target.json').height")" >> "$GITHUB_OUTPUT"
 
       - name: Install preview browser
         run: npx --yes playwright@latest install --with-deps chromium
