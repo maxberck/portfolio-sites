@@ -9,7 +9,7 @@ export function GalleryPage() {
         <SectionLabel>Assiettes · matières · salle</SectionLabel>
         <h1>Galerie</h1>
         <p className="silex-page-intro__statement">
-          Une sélection d'images pensée comme un carnet de service, entre gestes, produits et atmosphère.
+          Une sélection d’images pensée comme un carnet de service, entre gestes, produits et atmosphère.
         </p>
       </section>
 
