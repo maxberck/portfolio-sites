@@ -90,7 +90,7 @@ export const portfolioSites: PortfolioSite[] = [
     direction: "Gastronomique / luxe",
     summary: "Une table haut de gamme au rythme lent, portée par une typographie raffinée et une photographie culinaire très présente.",
     href: "/sites/restaurant-01",
-    status: "available",
+    status: "planned",
   },
   {
     id: "restaurant-02",
@@ -118,6 +118,13 @@ export const portfolioSites: PortfolioSite[] = [
     summary: "Un restaurant japonais contemporain fondé sur le vide, la précision, les lignes fines et une palette ivoire, charbon et rouge laqué.",
     href: "/sites/restaurant-04",
     status: "available",
+    preview: {
+      src: "/previews/restaurant-04-home.webp",
+      alt: "Aperçu de la page d'accueil du restaurant japonais Kuro",
+      width: 1440,
+      height: 1000,
+      focalPosition: "center top",
+    },
   },
   {
     id: "coiffure-01",

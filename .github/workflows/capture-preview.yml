@@ -1,0 +1,110 @@
+name: Capture portfolio preview
+
+on:
+  push:
+    branches:
+      - 'feat/**'
+    paths:
+      - '.github/workflows/capture-preview.yml'
+      - 'preview-target.json'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Read preview target
+        id: target
+        shell: bash
+        run: |
+          echo "site_id=$(node -p "require('./preview-target.json').siteId")" >> "$GITHUB_OUTPUT"
+          echo "route=$(node -p "require('./preview-target.json').route")" >> "$GITHUB_OUTPUT"
+          echo "width=$(node -p "require('./preview-target.json').width")" >> "$GITHUB_OUTPUT"
+          echo "height=$(node -p "require('./preview-target.json').height")" >> "$GITHUB_OUTPUT"
+
+      - name: Install preview browser
+        run: npx --yes playwright@latest install --with-deps chromium
+
+      - name: Capture browser-rendered preview
+        shell: bash
+        env:
+          SITE_ID: ${{ steps.target.outputs.site_id }}
+          ROUTE: ${{ steps.target.outputs.route }}
+          WIDTH: ${{ steps.target.outputs.width }}
+          HEIGHT: ${{ steps.target.outputs.height }}
+        run: |
+          npm run start -- -p 3000 > /tmp/preview-next.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
+
+          ready=0
+          for attempt in {1..30}; do
+            if curl -fsS "http://127.0.0.1:3000${ROUTE}" > /dev/null; then
+              ready=1
+              break
+            fi
+            sleep 1
+          done
+
+          if [ "$ready" -ne 1 ]; then
+            cat /tmp/preview-next.log
+            exit 1
+          fi
+
+          npx --yes playwright@latest screenshot \
+            --browser=chromium \
+            --viewport-size="${WIDTH},${HEIGHT}" \
+            --wait-for-timeout=3000 \
+            "http://127.0.0.1:3000${ROUTE}" \
+            "/tmp/${SITE_ID}-home.png"
+
+          sudo apt-get update -qq
+          sudo apt-get install -y webp
+          cwebp -quiet -q 82 "/tmp/${SITE_ID}-home.png" -o "/tmp/${SITE_ID}-home.webp"
+          test -s "/tmp/${SITE_ID}-home.webp"
+
+      - name: Upload preview artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: preview-${{ steps.target.outputs.site_id }}
+          path: /tmp/${{ steps.target.outputs.site_id }}-home.webp
+          if-no-files-found: error
+          retention-days: 7
+
+      - name: Commit preview to feature branch
+        shell: bash
+        env:
+          SITE_ID: ${{ steps.target.outputs.site_id }}
+        run: |
+          mkdir -p public/previews
+          cp "/tmp/${SITE_ID}-home.webp" "public/previews/${SITE_ID}-home.webp"
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "public/previews/${SITE_ID}-home.webp"
+
+          if git diff --cached --quiet; then
+            echo "Preview unchanged"
+            exit 0
+          fi
+
+          git commit -m "feat: update ${SITE_ID} portfolio preview"
+          git push origin "HEAD:${GITHUB_REF_NAME}"

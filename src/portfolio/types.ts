@@ -1,6 +1,14 @@
 export type SiteCategory = "garage" | "restaurant" | "coiffure" | "tatoueur";
 export type SiteStatus = "planned" | "available";
 
+export type PortfolioPreview = {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+  focalPosition?: string;
+};
+
 export type PortfolioSite = {
   id: string;
   name: string;
@@ -9,7 +17,7 @@ export type PortfolioSite = {
   summary: string;
   href: `/sites/${string}`;
   status: SiteStatus;
-  preview?: string;
+  preview?: PortfolioPreview;
 };
 
 export type SiteCategoryDefinition = {
