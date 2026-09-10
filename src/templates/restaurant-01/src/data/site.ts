@@ -103,8 +103,8 @@ export const silexSite: SilexSiteConfig = {
       caption: "La saison avant la recette",
     },
     {
-      src: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5ed0c?auto=format&fit=crop&w=1600&q=84",
-      alt: "Détail d’une salle de restaurant contemporaine et chaleureuse",
+      src: "https://images.unsplash.com/photo-1777270695079-2ee60686f60e?auto=format&fit=crop&w=1600&q=84",
+      alt: "Salle de restaurant élégante aux assises chaleureuses et à la lumière douce",
       width: 1600,
       height: 1067,
       caption: "Matières calmes, lumière basse",
