@@ -104,9 +104,16 @@ export const portfolioSites: PortfolioSite[] = [
     name: "District 88",
     category: "restaurant",
     direction: "Street food / urbain",
-    summary: "Direction prévue : affiches street-food denses, typographie condensée massive et photos au flash.",
+    summary: "Street-food Poster Riot — jaune acide, typographie condensée massive, photos au flash et compositions d’affiches superposées.",
     href: "/sites/restaurant-02",
-    status: "planned",
+    status: "available",
+    preview: {
+      src: "/previews/restaurant-02-home.webp",
+      alt: "Aperçu de la page d'accueil street-food Poster Riot de District 88",
+      width: 480,
+      height: 333,
+      focalPosition: "center top",
+    },
   },
   {
     id: "restaurant-03",
