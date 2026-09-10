@@ -4,8 +4,6 @@ on:
   push:
     branches:
       - feat/restaurant-01-silex-redesign
-    paths:
-      - '.github/workflows/silex-layout-debug.yml'
   workflow_dispatch:
 
 permissions:
