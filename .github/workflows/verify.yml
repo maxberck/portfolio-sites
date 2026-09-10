@@ -37,7 +37,6 @@ jobs:
       - name: Smoke test routes and catalogue counts
         shell: bash
         run: |
-          set -x
           npm run start -- -p 3000 > /tmp/portfolio-next.log 2>&1 &
           server_pid=$!
           trap 'kill "$server_pid" 2>/dev/null || true' EXIT
