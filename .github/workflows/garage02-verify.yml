@@ -7,7 +7,6 @@ on:
   pull_request:
     branches:
       - main
-      - 'feat/garage-01-atelier-noir'
 
 permissions:
   contents: read
@@ -36,6 +35,8 @@ jobs:
 
       - name: Smoke Torque Works routes
         shell: bash
+        env:
+          GARAGE02_REQUIRE_AVAILABLE: "1"
         run: |
           npm run start -- -p 3000 > /tmp/garage02-next.log 2>&1 &
           server_pid=$!
