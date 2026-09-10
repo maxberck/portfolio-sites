@@ -1,4 +1,4 @@
-/* Layout corrections for figure rules that must override the scoped figure reset. */
+/* Correct figure positioning after the scoped figure margin reset. */
 
 @media (min-width: 768px) {
   .silex-site .silex-spread__landscape {
