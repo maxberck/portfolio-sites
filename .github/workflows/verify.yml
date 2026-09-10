@@ -7,6 +7,7 @@ on:
       - feat/restaurant-04-japanese-minimal
       - feat/restaurant-01-maison-silex
       - feat/portfolio-commercial-redesign
+      - feat/restaurant-01-silex-redesign
   pull_request:
     branches:
       - main
@@ -132,6 +133,14 @@ jobs:
           grep -q 'La Maison' /tmp/silex-maison.html
           grep -q 'Galerie' /tmp/silex-gallery.html
           grep -q 'Adresse de démonstration' /tmp/silex-contact.html
+
+          grep -q 'data-silex-hero="full-bleed"' /tmp/silex-home.html
+          grep -q 'data-silex-chapter="manifesto"' /tmp/silex-home.html
+          grep -q 'data-silex-chapter="menu-folio"' /tmp/silex-home.html
+          grep -q 'data-silex-page="menu-poster"' /tmp/silex-menu.html
+          grep -q 'data-silex-page="maison-story"' /tmp/silex-maison.html
+          grep -q 'data-silex-page="gallery-sequence"' /tmp/silex-gallery.html
+          grep -q 'data-silex-page="contact-poster"' /tmp/silex-contact.html
 
           available_count=$(grep -oE '<article[^>]*site-card--available[^>]*>' /tmp/home.html | wc -l | tr -d ' ')
           real_preview_count=$(grep -oE '<div[^>]*data-preview="real"[^>]*>' /tmp/home.html | wc -l | tr -d ' ')
