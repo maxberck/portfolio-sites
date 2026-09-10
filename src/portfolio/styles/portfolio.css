@@ -319,6 +319,12 @@
   line-height: 0.86;
 }
 
+.catalogue-grid__item--narrow .site-card__preview--planned > strong {
+  max-width: none;
+  font-size: clamp(2.25rem, 3.2vw, 4rem);
+  letter-spacing: -0.06em;
+}
+
 .site-card__content {
   padding-top: 18px;
 }
@@ -794,8 +800,11 @@
     min-height: 300px;
   }
 
-  .site-card__preview--planned > strong {
+  .site-card__preview--planned > strong,
+  .catalogue-grid__item--narrow .site-card__preview--planned > strong {
+    max-width: 13ch;
     font-size: clamp(2.5rem, 13vw, 4rem);
+    letter-spacing: -0.07em;
   }
 
   .site-card h3,
