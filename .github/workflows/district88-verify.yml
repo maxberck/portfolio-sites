@@ -59,6 +59,7 @@ jobs:
           curl -fsS http://127.0.0.1:3000/sites/restaurant-02/concept > /tmp/d88-concept.html
           curl -fsS http://127.0.0.1:3000/sites/restaurant-02/galerie > /tmp/d88-gallery.html
           curl -fsS http://127.0.0.1:3000/sites/restaurant-02/contact > /tmp/d88-contact.html
+          curl -fsS http://127.0.0.1:3000/categories/restaurant > /tmp/d88-restaurant-category.html
 
           for page in /tmp/d88-home.html /tmp/d88-menu.html /tmp/d88-concept.html /tmp/d88-gallery.html /tmp/d88-contact.html; do
             grep -q 'name="robots" content="noindex, follow"' "$page"
@@ -79,3 +80,11 @@ jobs:
           grep -q 'href="/sites/restaurant-02/concept"' /tmp/d88-home.html
           grep -q 'href="/sites/restaurant-02/galerie"' /tmp/d88-home.html
           grep -q 'href="/sites/restaurant-02/contact"' /tmp/d88-home.html
+
+          restaurant_available_count=$(grep -oE '<article[^>]*site-card--available[^>]*>' /tmp/d88-restaurant-category.html | wc -l | tr -d ' ')
+          echo "Available restaurant demos: $restaurant_available_count"
+          test "$restaurant_available_count" -eq 3
+          grep -q 'data-site-card="restaurant-02"' /tmp/d88-restaurant-category.html
+          grep -q 'restaurant-02-home.webp' /tmp/d88-restaurant-category.html
+          grep -q 'href="/sites/restaurant-02"' /tmp/d88-restaurant-category.html
+          test -s public/previews/restaurant-02-home.webp
