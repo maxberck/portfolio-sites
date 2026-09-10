@@ -10,7 +10,7 @@ export function HomePage() {
         <div className="tw-shell tw-hero__grid">
           <div className="tw-hero__copy">
             <p className="tw-kicker">{torqueWorksSite.hero.eyebrow}</p>
-            <h1>{torqueWorksSite.hero.title}</h1>
+            <h1 style={{ fontSize: "clamp(4.2rem, 7.2vw, 8.2rem)" }}>{torqueWorksSite.hero.title}</h1>
             <p className="tw-hero__body">{torqueWorksSite.hero.body}</p>
             <div className="tw-actions">
               <Link className="tw-link" href="/sites/garage-02/interventions">Voir les interventions <span>↗</span></Link>
@@ -30,7 +30,7 @@ export function HomePage() {
           </aside>
         </div>
 
-        <div className="tw-shell tw-hero__media">
+        <div className="tw-shell tw-hero__media" style={{ marginTop: "clamp(28px, 4vw, 52px)" }}>
           <figure className="tw-photo tw-photo--hero">
             <img src={torqueWorksSite.hero.image.src} alt={torqueWorksSite.hero.image.alt} width={torqueWorksSite.hero.image.width} height={torqueWorksSite.hero.image.height} />
             <figcaption><span>ATELIER / MÉCANIQUE</span><span>CONTRÔLE AVANT PIÈCE</span></figcaption>
