@@ -3,10 +3,11 @@ import type { CSSProperties } from "react";
 import { silexSite } from "../src/data/site";
 
 export const silexThemeStyle = {
-  "--silex-background": silexSite.colors.background,
+  "--silex-ink": silexSite.colors.ink,
+  "--silex-wine": silexSite.colors.wine,
+  "--silex-paper": silexSite.colors.paper,
   "--silex-surface": silexSite.colors.surface,
-  "--silex-text": silexSite.colors.text,
+  "--silex-butter": silexSite.colors.butter,
   "--silex-muted": silexSite.colors.muted,
-  "--silex-accent": silexSite.colors.accent,
-  "--silex-line": silexSite.colors.line,
+  "--silex-white": silexSite.colors.white,
 } as CSSProperties;

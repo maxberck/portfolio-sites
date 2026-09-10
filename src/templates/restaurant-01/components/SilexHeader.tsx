@@ -12,43 +12,60 @@ export function SilexHeader() {
 
   return (
     <header className="silex-header">
-      <div className="silex-header__inner">
+      <div className="silex-header__bar">
         <Link className="silex-wordmark" href="/sites/restaurant-01" onClick={() => setOpen(false)}>
-          <span>{silexSite.business.name}</span>
-          <small>{silexSite.business.descriptor}</small>
+          {silexSite.business.name}
         </Link>
+
+        <nav className="silex-nav silex-nav--desktop" aria-label="Navigation Maison Silex">
+          {silexSite.navigation.map((item) => (
+            <Link key={item.href} href={item.href} aria-current={pathname === item.href ? "page" : undefined}>
+              {item.label}
+            </Link>
+          ))}
+        </nav>
 
         <button
           className="silex-menu-trigger"
           type="button"
           aria-expanded={open}
-          aria-controls="silex-navigation"
-          aria-label={open ? "Fermer la navigation" : "Ouvrir la navigation"}
-          onClick={() => setOpen((value) => !value)}
+          aria-controls="silex-mobile-panel"
+          onClick={() => setOpen(true)}
         >
-          <span aria-hidden="true">{open ? "Fermer" : "Menu"}</span>
+          Menu
         </button>
+      </div>
 
-        <nav
-          id="silex-navigation"
-          className={`silex-nav${open ? " silex-nav--open" : ""}`}
-          aria-label="Navigation Maison Silex"
-        >
-          {silexSite.navigation.map((item) => {
-            const active = pathname === item.href;
+      <div
+        id="silex-mobile-panel"
+        className={`silex-menu-panel${open ? " silex-menu-panel--open" : ""}`}
+        aria-hidden={!open}
+      >
+        <div className="silex-menu-panel__top">
+          <span>{silexSite.business.name}</span>
+          <button type="button" onClick={() => setOpen(false)} aria-label="Fermer la navigation">
+            Fermer
+          </button>
+        </div>
 
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                aria-current={active ? "page" : undefined}
-                onClick={() => setOpen(false)}
-              >
-                {item.label}
-              </Link>
-            );
-          })}
+        <nav className="silex-menu-panel__nav" aria-label="Navigation mobile Maison Silex">
+          {silexSite.navigation.map((item, index) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              aria-current={pathname === item.href ? "page" : undefined}
+              onClick={() => setOpen(false)}
+            >
+              <span>0{index + 1}</span>
+              {item.label}
+            </Link>
+          ))}
         </nav>
+
+        <div className="silex-menu-panel__contact">
+          <span>{silexSite.contact.location}</span>
+          <a href={`mailto:${silexSite.contact.email}`}>{silexSite.contact.email}</a>
+        </div>
       </div>
     </header>
   );

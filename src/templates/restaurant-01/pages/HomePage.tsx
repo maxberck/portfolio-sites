@@ -1,7 +1,6 @@
 import Link from "next/link";
 
 import { EditorialImage } from "../components/EditorialImage";
-import { SectionLabel } from "../components/SectionLabel";
 import { VisitPanel } from "../components/VisitPanel";
 import { silexMenu, silexMenuPrice } from "../src/data/menu";
 import { silexSite } from "../src/data/site";
@@ -11,100 +10,100 @@ export function HomePage() {
 
   return (
     <>
-      <section className="silex-hero">
-        <div className="silex-hero__copy">
-          <SectionLabel>{silexSite.hero.eyebrow}</SectionLabel>
-          <h1>{silexSite.hero.title}</h1>
-          <p className="silex-hero__body">{silexSite.hero.body}</p>
-          <Link className="silex-text-link" href="/sites/restaurant-01/menu">
-            Découvrir le menu <span aria-hidden="true">↗</span>
-          </Link>
-        </div>
+      <section className="silex-stage" data-silex-hero="full-bleed">
         <EditorialImage
           image={silexSite.hero.image}
-          className="silex-hero__image"
+          className="silex-stage__image"
           preload
-          sizes="(max-width: 900px) 100vw, 58vw"
+          sizes="100vw"
         />
-        <p className="silex-hero__index" aria-hidden="true">01 — Maison Silex</p>
+        <div className="silex-stage__veil" aria-hidden="true" />
+        <div className="silex-stage__meta">
+          <span>01</span>
+          <p>{silexSite.hero.eyebrow}</p>
+        </div>
+        <div className="silex-stage__copy">
+          <h1>{silexSite.hero.title}</h1>
+          <div>
+            <p>{silexSite.hero.body}</p>
+            <Link href="/sites/restaurant-01/menu">Voir le menu ↗</Link>
+          </div>
+        </div>
       </section>
 
-      <section className="silex-season">
-        <div>
-          <SectionLabel>{silexSite.season.eyebrow}</SectionLabel>
+      <section className="silex-manifesto" data-silex-chapter="manifesto">
+        <span className="silex-chapter-number">02</span>
+        <div className="silex-manifesto__statement">
+          <p>{silexSite.season.eyebrow}</p>
           <h2>{silexSite.season.title}</h2>
-        </div>
-        <div className="silex-season__copy">
           <p>{silexSite.season.body}</p>
-          <ul aria-label="Produits de la saison">
-            {silexSite.season.ingredients.map((ingredient) => (
-              <li key={ingredient}>{ingredient}</li>
-            ))}
-          </ul>
         </div>
+        <ul aria-label="Produits de la saison">
+          {silexSite.season.ingredients.map((ingredient) => <li key={ingredient}>{ingredient}</li>)}
+        </ul>
       </section>
 
-      <section className="silex-signatures" aria-labelledby="silex-signatures-title">
-        <div className="silex-signatures__heading">
-          <SectionLabel>Quelques assiettes</SectionLabel>
-          <h2 id="silex-signatures-title">Le produit d’abord.</h2>
+      <section className="silex-spread" data-silex-chapter="photographic-spread" aria-labelledby="silex-spread-title">
+        <div className="silex-spread__heading">
+          <span className="silex-chapter-number">03</span>
+          <h2 id="silex-spread-title">Le produit <em>d’abord.</em></h2>
         </div>
 
-        <div className="silex-signatures__grid">
+        <EditorialImage
+          image={silexSite.gallery[0]}
+          className="silex-spread__landscape"
+          sizes="(max-width: 767px) 100vw, 72vw"
+        />
+        <EditorialImage
+          image={silexSite.gallery[1]}
+          className="silex-spread__portrait"
+          sizes="(max-width: 767px) 100vw, 30vw"
+        />
+
+        <div className="silex-spread__captions">
           {signatures.map((dish, index) => (
-            <article className={`silex-signature silex-signature--${index + 1}`} key={dish.name}>
-              <EditorialImage
-                image={silexSite.gallery[index]}
-                className="silex-signature__image"
-                sizes="(max-width: 760px) 100vw, 34vw"
-              />
-              <div className="silex-signature__caption">
-                <span>0{index + 1}</span>
-                <div>
-                  <h3>{dish.name}</h3>
-                  <p>{dish.description}</p>
-                </div>
-              </div>
-            </article>
+            <div key={dish.name}>
+              <span>0{index + 1}</span>
+              <strong>{dish.name}</strong>
+              <p>{dish.description}</p>
+            </div>
           ))}
         </div>
       </section>
 
-      <section className="silex-chef-fragment">
+      <section className="silex-chef-spread" data-silex-chapter="chef">
         <EditorialImage
           image={silexSite.chef.image}
-          className="silex-chef-fragment__image"
-          sizes="(max-width: 800px) 100vw, 42vw"
+          className="silex-chef-spread__image"
+          sizes="(max-width: 767px) 100vw, 48vw"
         />
-        <div className="silex-chef-fragment__copy">
-          <SectionLabel>La Maison</SectionLabel>
+        <div className="silex-chef-spread__copy">
+          <span className="silex-chapter-number">04</span>
+          <p className="silex-chef-spread__role">{silexSite.chef.role}</p>
+          <h2>{silexSite.chef.name}</h2>
           <blockquote>« {silexSite.chef.quote} »</blockquote>
           <p>{silexSite.chef.biography}</p>
-          <Link className="silex-text-link" href="/sites/restaurant-01/maison">
-            Rencontrer la Maison <span aria-hidden="true">↗</span>
-          </Link>
+          <Link href="/sites/restaurant-01/maison">La Maison ↗</Link>
         </div>
       </section>
 
-      <section className="silex-menu-preview" aria-labelledby="silex-menu-preview-title">
-        <div>
-          <SectionLabel>Le soir</SectionLabel>
-          <h2 id="silex-menu-preview-title">Six temps, une seule saison.</h2>
+      <section className="silex-folio" data-silex-chapter="menu-folio" aria-labelledby="silex-folio-title">
+        <div className="silex-folio__intro">
+          <span className="silex-chapter-number">05</span>
+          <h2 id="silex-folio-title">Le menu comme <em>un récit.</em></h2>
         </div>
-        <div className="silex-menu-preview__list">
+        <div className="silex-folio__paper">
+          <div className="silex-folio__paper-head">
+            <span>Maison Silex · Bruxelles</span>
+            <strong>{silexMenuPrice}</strong>
+          </div>
           {silexMenu[0].items.slice(0, 5).map((item) => (
-            <p key={item.name}>
-              <span>{item.name}</span>
+            <p className="silex-folio__dish" key={item.name}>
+              <strong>{item.name}</strong>
               <span>{item.description}</span>
             </p>
           ))}
-          <div className="silex-menu-preview__price">
-            <span>Menu dégustation</span>
-            <strong>{silexMenuPrice}</strong>
-          </div>
-          <Link className="silex-text-link" href="/sites/restaurant-01/menu">
-            Voir le menu complet <span aria-hidden="true">↗</span>
-          </Link>
+          <Link href="/sites/restaurant-01/menu">Menu complet ↗</Link>
         </div>
       </section>
 
