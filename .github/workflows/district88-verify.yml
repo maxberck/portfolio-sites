@@ -83,7 +83,7 @@ jobs:
 
           restaurant_available_count=$(grep -oE '<article[^>]*site-card--available[^>]*>' /tmp/d88-restaurant-category.html | wc -l | tr -d ' ')
           echo "Available restaurant demos: $restaurant_available_count"
-          test "$restaurant_available_count" -eq 3
+          test "$restaurant_available_count" -eq 4
           grep -q 'data-site-card="restaurant-02"' /tmp/d88-restaurant-category.html
           grep -q 'restaurant-02-home.webp' /tmp/d88-restaurant-category.html
           grep -q 'href="/sites/restaurant-02"' /tmp/d88-restaurant-category.html
