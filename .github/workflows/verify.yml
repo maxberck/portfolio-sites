@@ -84,9 +84,14 @@ jobs:
           test "$coiffure_count" -eq 4
           test "$tatoueur_count" -eq 4
 
-          grep -q 'PORTFOLIO / SITES VITRINES' /tmp/home.html
-          grep -q '16 projets. 4 catégories.' /tmp/home.html
-          grep -q 'Garage, restaurant, coiffure et tattoo' /tmp/home.html
+          grep -q 'Sites vitrines\.' /tmp/home.html
+          grep -q 'Garage, restaurant, coiffure, tattoo\.' /tmp/home.html
+          grep -q 'Des démos navigables, chacune avec sa propre direction visuelle\.' /tmp/home.html
+          ! grep -q '16 projets. 4 catégories.' /tmp/home.html
+          ! grep -q '/ 16 disponibles' /tmp/home.html
+          ! grep -q 'category-directory__index' /tmp/home.html
+          ! grep -q 'site-card__planned-top' /tmp/home.html
+          ! grep -q '04 / 16' /tmp/restaurant.html
           ! grep -q 'Créer mon site' /tmp/home.html
           ! grep -q 'Faire créer mon site' /tmp/home.html
           ! grep -q 'Comment ça marche' /tmp/home.html
@@ -100,7 +105,7 @@ jobs:
 
           grep -q 'target="_blank"' /tmp/home.html
           grep -q 'rel="noreferrer"' /tmp/home.html
-          grep -q 'Voir la démo' /tmp/home.html
+          grep -q 'Ouvrir la démo' /tmp/home.html
           grep -q 'Minimal japonais — ivoire et charbon' /tmp/home.html
           grep -q 'Gastronomique éditorial — photographie plein écran' /tmp/home.html
           grep -q 'Direction prévue :' /tmp/home.html
@@ -114,6 +119,13 @@ jobs:
           test -s public/previews/restaurant-01-home.webp
           test -s /tmp/robots.txt
           test -s /tmp/sitemap.xml
+
+          grep -qi 'réparation' /tmp/garage.html
+          grep -qi 'entretien' /tmp/garage.html
+          grep -qi 'diagnostic' /tmp/garage.html
+          grep -qi 'dépannage' /tmp/garage.html
+          ! grep -qi 'création de voiture' /tmp/garage.html
+          ! grep -qi 'fabrication de voiture' /tmp/garage.html
 
           for category_page in /tmp/garage.html /tmp/restaurant.html /tmp/coiffure.html /tmp/tatoueur.html; do
             ! grep -q 'Créer mon site' "$category_page"
