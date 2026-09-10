@@ -62,7 +62,7 @@ Base :
 - muted : gris neutre ;
 - line : gris clair ;
 - accent : bleu électrique utilisé pour les états actifs, liens clés et petits signaux d'action ;
-- dark section : noir possible pour un seul bloc CTA final.
+- final CTA section : noir plein avec texte blanc.
 
 La palette du portfolio ne doit pas ressembler à Kuro et ne doit pas reprendre la palette Maison Silex.
 
@@ -74,8 +74,8 @@ Direction typographique :
 
 - display/headlines : sans-serif moderne, nette et dense ;
 - body : sans-serif lisible ;
-- metadata, numéros, catégories : monospace ou sans-serif à métrique technique ;
-- aucune serif requise dans le portfolio principal.
+- metadata, numéros et catégories : monospace ;
+- aucune serif dans le portfolio principal.
 
 Le contraste doit venir de l'échelle, de la graisse, de la casse et de la grille, pas du duo « grosse serif + petite grotesque » utilisé par beaucoup de portfolios éditoriaux.
 
@@ -110,27 +110,26 @@ Aucun changement d'URL inutile n'est introduit.
 
 ## 6. Header
 
-Le header doit devenir plus commercial et plus utile.
+Le header devient commercial, compact et sticky.
 
 Structure desktop :
 
 - marque / nom du portfolio à gauche ;
-- navigation catégories directement visible ;
-- lien `Tous` ;
+- `Tous` ;
 - `Garage` ;
 - `Restaurant` ;
 - `Coiffure` ;
 - `Tattoo` ;
-- CTA `Créer mon site` ou `Me contacter` à droite.
+- CTA principal `Créer mon site` à droite.
 
-Le header peut devenir sticky si le comportement reste stable et ne masque pas le contenu.
+Le header sticky conserve une hauteur stable et ne masque jamais les ancres de contenu.
 
 Sur mobile :
 
 - marque ;
 - bouton de navigation accessible ;
 - catégories dans un panneau simple ;
-- CTA toujours accessible ;
+- CTA `Créer mon site` accessible depuis le panneau ;
 - pas de navigation horizontale coupée.
 
 ## 7. Homepage hero
@@ -139,7 +138,7 @@ Le hero actuel est supprimé.
 
 Le nouveau hero est compact et doit faire comprendre immédiatement l'offre.
 
-Message principal recommandé :
+Message principal :
 
 > Des sites qui ressemblent à de vraies marques.
 
@@ -147,13 +146,13 @@ Message de soutien :
 
 > Choisissez une direction, explorez la démo, adaptez-la à votre activité.
 
-Le hero peut contenir :
+Le hero contient exactement :
 
 - le positionnement ;
-- un court texte ;
+- le court texte de soutien ;
 - un compteur de démos disponibles ;
-- un CTA vers le catalogue ;
-- un CTA contact secondaire.
+- un CTA `Voir les sites` vers le catalogue ;
+- un CTA secondaire `Créer mon site` vers la section contact.
 
 Il ne doit pas repousser la première preview hors de l'écran sur un desktop standard.
 
@@ -161,7 +160,7 @@ Il ne doit pas repousser la première preview hors de l'écran sur un desktop st
 
 Les catégories restent une fonction centrale du produit.
 
-Le catalogue affiche un rail ou groupe d'onglets :
+Le catalogue affiche une navigation de catégories :
 
 - `Tous`
 - `Garages`
@@ -169,7 +168,7 @@ Le catalogue affiche un rail ou groupe d'onglets :
 - `Coiffure`
 - `Tattoo`
 
-Sur la homepage, les onglets servent de navigation claire vers les collections. Ils peuvent filtrer côté client uniquement si cela apporte une vraie amélioration ; sinon les routes de catégories restent le comportement principal afin de conserver une architecture simple et robuste.
+Ces onglets naviguent vers les routes existantes. Aucun filtre client supplémentaire n'est ajouté dans ce sous-projet.
 
 Sur une page catégorie :
 
@@ -254,13 +253,13 @@ Le placeholder doit rester secondaire face aux vraies captures disponibles.
 
 Le catalogue n'utilise plus une simple grille uniforme `repeat(2, 1fr)` pour toutes les cartes.
 
-La composition doit varier de façon déterministe, sans randomisation client :
+La composition varie de façon déterministe, sans randomisation client :
 
-- projet disponible majeur : grand format ;
-- autres projets disponibles : alternance grand/moyen ;
-- projets planned : formats plus compacts ;
-- certains couples peuvent être affichés côte à côte ;
-- la hiérarchie doit rester stable entre rendus.
+- la première démo disponible du catalogue prend un format large ;
+- les démos disponibles suivantes alternent grand et moyen ;
+- les projets `planned` sont plus compacts ;
+- certains couples sont affichés côte à côte ;
+- la hiérarchie reste stable entre rendus.
 
 La variation ne doit pas empêcher de scanner rapidement les 16 projets.
 
@@ -276,7 +275,7 @@ La preview et le titre d'une démo disponible ouvrent la vraie démo.
 
 ## 11. Category pages
 
-Les pages catégorie gardent la même identité de portfolio mais ne doivent pas être des copies exactes de la homepage avec quatre cartes.
+Les pages catégorie gardent la même identité de portfolio mais ne sont pas des copies exactes de la homepage avec quatre cartes.
 
 Structure :
 
@@ -284,8 +283,8 @@ Structure :
 2. quatre directions visibles très rapidement ;
 3. previews disponibles en grand format ;
 4. planned states clairement identifiés ;
-5. bloc commercial final : « Vous aimez une direction ? Elle peut être adaptée à votre activité. » ;
-6. CTA contact.
+5. bloc commercial final : `Vous aimez une direction ? Elle peut être adaptée à votre activité.` ;
+6. CTA `Créer mon site`.
 
 Le nombre de démos par catégorie reste quatre.
 
@@ -293,7 +292,7 @@ Le nombre de démos par catégorie reste quatre.
 
 Le ton doit être concret, court et orienté vers un prospect local ou une petite entreprise.
 
-Exemples de formulations autorisées :
+Formulations de référence :
 
 - `Voir la démo`
 - `Voir les sites restaurant`
@@ -306,7 +305,7 @@ Exemples de formulations autorisées :
 
 ## 13. Commercial conversion section
 
-La homepage termine par une section dédiée à la vente du service.
+La homepage se termine par une section noire dédiée à la vente du service.
 
 Elle explique simplement :
 
@@ -314,7 +313,7 @@ Elle explique simplement :
 2. adapter identité, contenus, images et pages ;
 3. publier le site final pour le client.
 
-Un CTA contact est présent.
+Le CTA principal est `Créer mon site`.
 
 Il n'y a pas :
 
@@ -358,10 +357,10 @@ Cette règle est une gate de revue design. Elle n'est pas réduite à un simple 
 
 Desktop :
 
-- les previews peuvent varier de largeur ;
+- les previews varient de largeur ;
 - la composition conserve une lecture claire ;
 - le hero reste court ;
-- le header et les filtres restent accessibles.
+- le header sticky et les catégories restent accessibles.
 
 Tablet :
 
@@ -385,10 +384,10 @@ Mobile :
 - focus visible ;
 - contrastes WCAG lisibles ;
 - alt text descriptif sur les previews réelles ;
-- placeholders planned décoratifs ou décrits sans prétendre être une capture ;
+- placeholders planned décrits sans prétendre être une capture ;
 - navigation clavier complète ;
 - reduced motion respecté ;
-- les previews ne doivent pas être la seule source de l'information nom/catégorie/statut.
+- les previews ne sont jamais la seule source de l'information nom/catégorie/statut.
 
 ## 18. Performance
 
@@ -426,7 +425,7 @@ La CI du redesign doit vérifier :
 - quatre projets par catégorie ;
 - Kuro toujours accessible ;
 - les liens catégories présents ;
-- le CTA commercial présent ;
+- le CTA `Créer mon site` présent ;
 - une démo `available` possède une preview ;
 - aucun iframe n'est utilisé pour les previews ;
 - Kuro n'est pas modifié par ce sous-projet.
@@ -482,7 +481,7 @@ Le sous-projet est acceptable lorsque :
 5. les cartes ne donnent plus l'impression de 16 variantes identiques ;
 6. Kuro affiche une vraie preview statique de sa homepage ;
 7. aucune démo planned ne présente une fausse capture ;
-8. la fonction commerciale « choisir → explorer → adapter → contacter » est évidente ;
+8. la fonction commerciale `choisir → explorer → adapter → contacter` est évidente ;
 9. les 16 entrées et quatre catégories sont préservées ;
 10. Kuro reste fonctionnel et visuellement inchangé ;
 11. lint, build et smoke tests sont verts ;
