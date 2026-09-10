@@ -70,7 +70,14 @@ export const portfolioSites: PortfolioSite[] = [
     direction: "Mécanique générale / atelier technique",
     summary: "Mécanique générale — distribution, embrayage, suspension, échappement et recherche de panne dans un univers de fiche atelier.",
     href: "/sites/garage-02",
-    status: "planned",
+    status: "available",
+    preview: {
+      src: "/previews/garage-02-home.webp",
+      alt: "Aperçu de la page d'accueil technique et claire du garage Torque Works",
+      width: 1440,
+      height: 1000,
+      focalPosition: "center top",
+    },
   },
   {
     id: "garage-03",
