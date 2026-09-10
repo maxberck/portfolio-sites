@@ -3,11 +3,8 @@ name: Verify portfolio
 on:
   push:
     branches:
-      - feat/portfolio-architecture
-      - feat/restaurant-04-japanese-minimal
-      - feat/restaurant-01-maison-silex
-      - feat/portfolio-commercial-redesign
-      - feat/restaurant-01-silex-redesign
+      - 'feat/**'
+      - 'fix/**'
   pull_request:
     branches:
       - main
@@ -87,12 +84,27 @@ jobs:
           test "$coiffure_count" -eq 4
           test "$tatoueur_count" -eq 4
 
-          grep -q 'Des sites qui ressemblent à de vraies marques.' /tmp/home.html
-          grep -q 'Créer mon site' /tmp/home.html
+          grep -q 'PORTFOLIO / SITES VITRINES' /tmp/home.html
+          grep -q '16 projets. 4 catégories.' /tmp/home.html
+          grep -q 'Garage, restaurant, coiffure et tattoo' /tmp/home.html
+          ! grep -q 'Créer mon site' /tmp/home.html
+          ! grep -q 'Faire créer mon site' /tmp/home.html
+          ! grep -q 'Comment ça marche' /tmp/home.html
+          ! grep -q 'Adapté à votre activité' /tmp/home.html
+          ! grep -q 'adaptez-la à votre activité' /tmp/home.html
+
           grep -q 'href="/categories/garage"' /tmp/home.html
           grep -q 'href="/categories/restaurant"' /tmp/home.html
           grep -q 'href="/categories/coiffure"' /tmp/home.html
           grep -q 'href="/categories/tatoueur"' /tmp/home.html
+
+          grep -q 'target="_blank"' /tmp/home.html
+          grep -q 'rel="noreferrer"' /tmp/home.html
+          grep -q 'Voir la démo' /tmp/home.html
+          grep -q 'Minimal japonais — ivoire et charbon' /tmp/home.html
+          grep -q 'Gastronomique éditorial — photographie plein écran' /tmp/home.html
+          grep -q 'Direction prévue :' /tmp/home.html
+
           grep -q 'data-preview="real"' /tmp/home.html
           grep -q 'restaurant-04-home.webp' /tmp/home.html
           grep -q 'restaurant-01-home.webp' /tmp/home.html
@@ -102,6 +114,11 @@ jobs:
           test -s public/previews/restaurant-01-home.webp
           test -s /tmp/robots.txt
           test -s /tmp/sitemap.xml
+
+          for category_page in /tmp/garage.html /tmp/restaurant.html /tmp/coiffure.html /tmp/tatoueur.html; do
+            ! grep -q 'Créer mon site' "$category_page"
+            ! grep -q 'adaptée à votre activité' "$category_page"
+          done
 
           curl -fsS http://127.0.0.1:3000/sites/restaurant-04 > /tmp/kuro-home.html
           curl -fsS http://127.0.0.1:3000/sites/restaurant-04/menu > /tmp/kuro-menu.html
@@ -147,7 +164,10 @@ jobs:
 
           available_count=$(grep -oE '<article[^>]*site-card--available[^>]*>' /tmp/home.html | wc -l | tr -d ' ')
           real_preview_count=$(grep -oE '<div[^>]*data-preview="real"[^>]*>' /tmp/home.html | wc -l | tr -d ' ')
+          new_tab_count=$(grep -oE '<a[^>]*target="_blank"[^>]*data-demo-link="true"[^>]*>|<a[^>]*data-demo-link="true"[^>]*target="_blank"[^>]*>' /tmp/home.html | wc -l | tr -d ' ')
           echo "Available demos: $available_count"
           echo "Real previews: $real_preview_count"
+          echo "New-tab demo links: $new_tab_count"
           test "$available_count" -eq 2
           test "$real_preview_count" -eq 2
+          test "$new_tab_count" -eq 2
