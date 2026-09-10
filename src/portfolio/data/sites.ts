@@ -54,7 +54,14 @@ export const portfolioSites: PortfolioSite[] = [
     direction: "Entretien automobile premium",
     summary: "Garage premium — entretien constructeur, freinage, pneumatiques et diagnostic dans un univers automobile sombre.",
     href: "/sites/garage-01",
-    status: "planned",
+    status: "available",
+    preview: {
+      src: "/previews/garage-01-home.webp",
+      alt: "Aperçu de la page d'accueil sombre et technique du garage Atelier Noir",
+      width: 1440,
+      height: 1000,
+      focalPosition: "center top",
+    },
   },
   {
     id: "garage-02",

@@ -30,7 +30,7 @@ Coral, Mint and Gold are secondary signals only. Do not let accent colors compet
 - Technical mosaic background is subtle and low contrast.
 
 ## Project presentation
-Homepage shows a curated four-project selection, not all 16 projects. Category pages show all four projects for that category. Kuro and Maison Silex use real captured previews; planned projects use honest typographic direction fields and never fake screenshots.
+Homepage shows a curated four-project selection, not all 16 projects. Category pages show all four projects for that category. Available demos use real captured previews; planned projects use honest typographic direction fields and never fake screenshots.
 
 ## Interaction
 Available demos open in a new tab so the portfolio remains open. Real preview images use luminosity treatment by default and shift to full color on hover/focus. Motion is short (120–180ms) and disabled/reduced under `prefers-reduced-motion`.
