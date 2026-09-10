@@ -120,9 +120,16 @@ export const portfolioSites: PortfolioSite[] = [
     name: "Terra",
     category: "restaurant",
     direction: "Méditerranéen / chaleureux",
-    summary: "Direction prévue : tons terre et olive, mosaïque photographique solaire et rythme organique sans grille rigide répétitive.",
+    summary: "Mediterranean Table — pierre claire, terre cuite, Fraunces organique, plats à partager et compositions photographiques baignées de soleil.",
     href: "/sites/restaurant-03",
-    status: "planned",
+    status: "available",
+    preview: {
+      src: "/previews/restaurant-03-home.webp",
+      alt: "Aperçu de la page d'accueil méditerranéenne de Terra",
+      width: 1440,
+      height: 1000,
+      focalPosition: "center top",
+    },
   },
   {
     id: "restaurant-04",

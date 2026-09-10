@@ -1,0 +1,70 @@
+name: Terra visual QA
+
+on:
+  push:
+    branches:
+      - 'feat/restaurant-03-terra-build'
+    paths:
+      - '.github/workflows/terra-visual-qa.yml'
+      - 'app/sites/restaurant-03/**'
+      - 'src/templates/restaurant-03/**'
+      - 'scripts/capture-terra.mjs'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Install Playwright and Chromium
+        run: |
+          npm install --no-save --package-lock=false playwright@latest
+          npx playwright install --with-deps chromium
+
+      - name: Capture Terra viewports
+        shell: bash
+        run: |
+          npm run start -- -p 3000 > /tmp/terra-next.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
+
+          ready=0
+          for attempt in {1..30}; do
+            if curl -fsS http://127.0.0.1:3000/sites/restaurant-03 > /dev/null; then
+              ready=1
+              break
+            fi
+            sleep 1
+          done
+
+          if [ "$ready" -ne 1 ]; then
+            cat /tmp/terra-next.log
+            exit 1
+          fi
+
+          TERRA_QA_DIR=/tmp/terra-qa node scripts/capture-terra.mjs
+
+      - name: Upload Terra visual QA artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: terra-mediterranean-table-qa
+          path: /tmp/terra-qa/*.png
+          if-no-files-found: error
+          retention-days: 7
