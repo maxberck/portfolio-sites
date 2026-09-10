@@ -13,7 +13,7 @@ export function HomePage() {
       <section className="d88-hero" data-d88-page="home-poster">
         <div className="d88-hero__type">
           <p className="d88-kicker">STREET KITCHEN / BRUXELLES</p>
-          <h1><span>EAT</span><span>LOUD.</span></h1>
+          <h1 aria-label="EAT LOUD."><span>EAT</span><span>LOUD.</span></h1>
           <div className="d88-hero__actions">
             <Link className="d88-button d88-button--ink" href="/sites/restaurant-02/menu">MENU ↗</Link>
             <span>SMASH / FRIED / LATE</span>
