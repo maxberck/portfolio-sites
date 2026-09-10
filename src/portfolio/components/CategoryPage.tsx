@@ -58,7 +58,7 @@ export function CategoryPage({ category }: CategoryPageProps) {
             </div>
             <div className="category-sales__action">
               <p>On garde ce qui fonctionne dans la démo et on remplace le reste par votre marque, vos images, vos services et vos informations.</p>
-              <a className="button button--dark" href="/#contact">Créer mon site</a>
+              <Link className="button button--dark" href="/#contact">Créer mon site</Link>
             </div>
           </div>
         </section>
