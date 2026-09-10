@@ -33,7 +33,7 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Smoke Terra routes
+      - name: Smoke Terra routes and publication
         shell: bash
         run: |
           npm run start -- -p 3000 > /tmp/terra-next.log 2>&1 &
@@ -54,4 +54,4 @@ jobs:
             exit 1
           fi
 
-          node scripts/smoke-terra.mjs
+          TERRA_REQUIRE_AVAILABLE=1 node scripts/smoke-terra.mjs
