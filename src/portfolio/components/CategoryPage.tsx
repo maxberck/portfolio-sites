@@ -12,13 +12,6 @@ type CategoryPageProps = {
   category: SiteCategory;
 };
 
-const categoryNouns: Record<SiteCategory, string> = {
-  garage: "garage",
-  restaurant: "restaurant",
-  coiffure: "salon",
-  tatoueur: "studio tattoo",
-};
-
 export function CategoryPage({ category }: CategoryPageProps) {
   const definition = siteCategories.find((item) => item.id === category);
   const sites = getSitesByCategory(category);
@@ -27,6 +20,8 @@ export function CategoryPage({ category }: CategoryPageProps) {
     return null;
   }
 
+  const displayLabel = definition.id === "tatoueur" ? "Tattoo" : definition.label;
+
   return (
     <>
       <PortfolioHeader />
@@ -34,11 +29,11 @@ export function CategoryPage({ category }: CategoryPageProps) {
       <main>
         <section className="category-hero">
           <div className="portfolio-container category-hero__grid">
-            <p className="portfolio-kicker">Collection / {definition.label}</p>
-            <h1>4 directions pour votre {categoryNouns[category]}.</h1>
+            <p className="portfolio-kicker">CATÉGORIE / {displayLabel.toUpperCase()}</p>
+            <h1>{displayLabel} / 04 projets</h1>
             <div className="category-hero__aside">
               <p>{definition.description}</p>
-              <p>Chaque démo peut servir de base puis être adaptée à votre identité, vos services et vos contenus.</p>
+              <span>04 / 16</span>
             </div>
           </div>
         </section>
@@ -50,21 +45,8 @@ export function CategoryPage({ category }: CategoryPageProps) {
           </div>
         </section>
 
-        <section className="category-sales">
-          <div className="portfolio-container category-sales__grid">
-            <div>
-              <p className="portfolio-kicker">Adaptation</p>
-              <h2>Vous aimez une direction ? Elle peut être adaptée à votre activité.</h2>
-            </div>
-            <div className="category-sales__action">
-              <p>On garde ce qui fonctionne dans la démo et on remplace le reste par votre marque, vos images, vos services et vos informations.</p>
-              <Link className="button button--dark" href="/#contact">Créer mon site</Link>
-            </div>
-          </div>
-        </section>
-
         <div className="portfolio-container category-page__return-wrap">
-          <Link className="category-page__return" href="/">← Voir toutes les catégories</Link>
+          <Link className="category-page__return" href="/">← Tous les projets</Link>
         </div>
       </main>
 
