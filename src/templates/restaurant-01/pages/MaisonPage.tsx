@@ -14,7 +14,7 @@ export function MaisonPage() {
       <section className="silex-maison-story silex-maison-story--philosophy">
         <div>
           <SectionLabel>01 · Philosophie</SectionLabel>
-          <h2>Peu d'éléments, beaucoup de profondeur.</h2>
+          <h2>Peu d’éléments, beaucoup de profondeur.</h2>
           <p>{silexSite.maison.philosophy}</p>
         </div>
         <EditorialImage
