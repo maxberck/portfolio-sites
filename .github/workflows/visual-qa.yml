@@ -6,6 +6,8 @@ on:
       - feat/portfolio-swiss-brutalist
     paths:
       - '.github/workflows/visual-qa.yml'
+      - 'app/(portfolio)/**'
+      - 'src/portfolio/**'
   workflow_dispatch:
 
 permissions:
@@ -65,7 +67,7 @@ jobs:
       - name: Upload visual QA artifact
         uses: actions/upload-artifact@v4
         with:
-          name: portfolio-swiss-brutalist-qa
+          name: portfolio-editorial-brutalist-qa
           path: /tmp/portfolio-qa/*.png
           if-no-files-found: error
           retention-days: 7
