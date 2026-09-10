@@ -28,7 +28,7 @@ export function SiteCard({ site }: SiteCardProps) {
   );
 
   return (
-    <article className={`site-card site-card--${site.status}`}>
+    <article className={`site-card site-card--${site.status}`} data-category={site.category}>
       {site.status === "available" ? (
         <Link className="site-card__link" href={site.href} prefetch={false}>
           {content}
