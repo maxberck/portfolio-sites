@@ -29,12 +29,9 @@ export function CategoryPage({ category }: CategoryPageProps) {
       <main>
         <section className="category-hero">
           <div className="portfolio-container category-hero__grid">
-            <p className="portfolio-kicker">CATÉGORIE / {displayLabel.toUpperCase()}</p>
-            <h1>{displayLabel} / 04 projets</h1>
-            <div className="category-hero__aside">
-              <p>{definition.description}</p>
-              <span>04 / 16</span>
-            </div>
+            <p className="category-hero__label">Sites vitrines / {displayLabel}</p>
+            <h1>{displayLabel}</h1>
+            <p className="category-hero__intro">{definition.description}</p>
           </div>
         </section>
 

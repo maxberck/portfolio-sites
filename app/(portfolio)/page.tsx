@@ -16,7 +16,6 @@ export default function HomePage() {
     });
   const plannedSites = portfolioSites.filter((site) => site.status === "planned");
   const catalogueSites = [...availableSites, ...plannedSites];
-  const availableCount = availableSites.length;
 
   return (
     <>
@@ -25,18 +24,13 @@ export default function HomePage() {
       <main>
         <section className="portfolio-hero" aria-labelledby="portfolio-title">
           <div className="portfolio-container portfolio-hero__grid">
-            <div className="portfolio-hero__copy">
-              <p className="portfolio-kicker">PORTFOLIO / SITES VITRINES</p>
-              <h1 id="portfolio-title">16 projets. 4 catégories.</h1>
-            </div>
-
-            <div className="portfolio-hero__aside">
-              <p>Garage, restaurant, coiffure et tattoo — des directions visuelles volontairement différentes.</p>
-              <div className="portfolio-hero__status" aria-label={`${availableCount} démos disponibles sur 16`}>
-                <strong>{String(availableCount).padStart(2, "0")}</strong>
-                <span>/ 16 disponibles</span>
-              </div>
-              <a className="portfolio-hero__explore" href="#catalogue">Explorer ↓</a>
+            <p className="portfolio-hero__label">Portfolio</p>
+            <h1 id="portfolio-title">Sites vitrines.</h1>
+            <div className="portfolio-hero__foot">
+              <p className="portfolio-hero__categories">Garage, restaurant, coiffure, tattoo.</p>
+              <p className="portfolio-hero__intro">
+                Des démos navigables, chacune avec sa propre direction visuelle.
+              </p>
             </div>
           </div>
         </section>
@@ -44,11 +38,8 @@ export default function HomePage() {
         <section className="catalogue-section" id="catalogue" aria-labelledby="catalogue-title">
           <div className="portfolio-container">
             <div className="catalogue-toolbar">
-              <div>
-                <p className="portfolio-kicker">INDEX / PROJETS</p>
-                <h2 id="catalogue-title">Sélection complète</h2>
-              </div>
-              <p className="catalogue-toolbar__note">16 projets / 04 catégories</p>
+              <h2 id="catalogue-title">Projets</h2>
+              <p>Démos disponibles et directions en préparation.</p>
             </div>
 
             <CategoryNavigation />
@@ -59,26 +50,24 @@ export default function HomePage() {
         <section className="category-directory" aria-labelledby="category-directory-title">
           <div className="portfolio-container">
             <div className="category-directory__head">
-              <p className="portfolio-kicker">INDEX / CATÉGORIES</p>
-              <h2 id="category-directory-title">Quatre univers.</h2>
+              <h2 id="category-directory-title">Par catégorie</h2>
+              <p>Quatre univers, chacun avec ses propres codes visuels.</p>
             </div>
 
-            <ol className="category-directory__list">
-              {siteCategories.map((category, index) => {
+            <ul className="category-directory__list">
+              {siteCategories.map((category) => {
                 const label = category.id === "tatoueur" ? "Tattoo" : category.label;
 
                 return (
                   <li key={category.id}>
                     <Link href={category.href} className="category-directory__link">
-                      <span className="category-directory__index">0{index + 1}</span>
-                      <strong>{label.toUpperCase()}</strong>
-                      <span className="category-directory__count">04 projets</span>
+                      <strong>{label}</strong>
                       <span className="category-directory__arrow" aria-hidden="true">↗</span>
                     </Link>
                   </li>
                 );
               })}
-            </ol>
+            </ul>
           </div>
         </section>
       </main>
