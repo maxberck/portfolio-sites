@@ -103,4 +103,8 @@ jobs:
           grep -q 'La table' /tmp/kuro-restaurant.html
           grep -q 'Galerie' /tmp/kuro-gallery.html
           grep -q 'Adresse de démonstration' /tmp/kuro-contact.html
-          grep -q 'site-card--available' /tmp/restaurant.html
+          grep -q 'href="/sites/restaurant-04"' /tmp/restaurant.html
+
+          available_count=$(grep -o 'site-card--available' /tmp/home.html | wc -l | tr -d ' ')
+          echo "Available demos: $available_count"
+          test "$available_count" -eq 1
