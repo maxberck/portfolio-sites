@@ -90,7 +90,7 @@ export const portfolioSites: PortfolioSite[] = [
     direction: "Gastronomique / luxe",
     summary: "Une table haut de gamme au rythme lent, portée par une typographie raffinée et une photographie culinaire très présente.",
     href: "/sites/restaurant-01",
-    status: "planned",
+    status: "available",
   },
   {
     id: "restaurant-02",
