@@ -3,7 +3,7 @@ name: Portfolio visual QA
 on:
   push:
     branches:
-      - feat/portfolio-commercial-redesign
+      - feat/portfolio-swiss-brutalist
     paths:
       - '.github/workflows/visual-qa.yml'
   workflow_dispatch:
@@ -55,14 +55,17 @@ jobs:
           fi
 
           mkdir -p /tmp/portfolio-qa
-          npx --yes playwright@latest screenshot --browser=chromium --viewport-size="1440,1000" --wait-for-timeout=1500 http://127.0.0.1:3000/ /tmp/portfolio-qa/desktop-1440.png
-          npx --yes playwright@latest screenshot --browser=chromium --viewport-size="768,1024" --wait-for-timeout=1500 http://127.0.0.1:3000/ /tmp/portfolio-qa/tablet-768.png
-          npx --yes playwright@latest screenshot --browser=chromium --viewport-size="375,812" --wait-for-timeout=1500 http://127.0.0.1:3000/ /tmp/portfolio-qa/mobile-375.png
+          npx --yes playwright@latest screenshot --browser=chromium --viewport-size="1440,1000" --wait-for-timeout=1500 --full-page http://127.0.0.1:3000/ /tmp/portfolio-qa/home-desktop-1440-full.png
+          npx --yes playwright@latest screenshot --browser=chromium --viewport-size="768,1024" --wait-for-timeout=1500 http://127.0.0.1:3000/ /tmp/portfolio-qa/home-tablet-768.png
+          npx --yes playwright@latest screenshot --browser=chromium --viewport-size="375,812" --wait-for-timeout=1500 http://127.0.0.1:3000/ /tmp/portfolio-qa/home-mobile-375.png
+          npx --yes playwright@latest screenshot --browser=chromium --viewport-size="1440,1000" --wait-for-timeout=1500 --full-page http://127.0.0.1:3000/categories/restaurant /tmp/portfolio-qa/restaurant-desktop-1440-full.png
+          npx --yes playwright@latest screenshot --browser=chromium --viewport-size="768,1024" --wait-for-timeout=1500 http://127.0.0.1:3000/categories/restaurant /tmp/portfolio-qa/restaurant-tablet-768.png
+          npx --yes playwright@latest screenshot --browser=chromium --viewport-size="375,812" --wait-for-timeout=1500 http://127.0.0.1:3000/categories/restaurant /tmp/portfolio-qa/restaurant-mobile-375.png
 
       - name: Upload visual QA artifact
         uses: actions/upload-artifact@v4
         with:
-          name: portfolio-visual-qa
+          name: portfolio-swiss-brutalist-qa
           path: /tmp/portfolio-qa/*.png
           if-no-files-found: error
           retention-days: 7
