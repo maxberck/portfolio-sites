@@ -6,6 +6,7 @@ on:
       - feat/portfolio-architecture
       - feat/restaurant-04-japanese-minimal
       - feat/restaurant-01-maison-silex
+      - feat/portfolio-commercial-redesign
   pull_request:
     branches:
       - main
@@ -85,7 +86,15 @@ jobs:
           test "$coiffure_count" -eq 4
           test "$tatoueur_count" -eq 4
 
-          grep -q "Des sites vitrines pensés comme de vrais sites clients" /tmp/home.html
+          grep -q 'Des sites qui ressemblent à de vraies marques.' /tmp/home.html
+          grep -q 'Créer mon site' /tmp/home.html
+          grep -q 'href="/categories/garage"' /tmp/home.html
+          grep -q 'href="/categories/restaurant"' /tmp/home.html
+          grep -q 'href="/categories/coiffure"' /tmp/home.html
+          grep -q 'href="/categories/tatoueur"' /tmp/home.html
+          grep -q 'data-preview="real"' /tmp/home.html
+          ! grep -qi '<iframe' /tmp/home.html
+
           test -s /tmp/robots.txt
           test -s /tmp/sitemap.xml
 
@@ -121,8 +130,7 @@ jobs:
           grep -q 'La Maison' /tmp/silex-maison.html
           grep -q 'Galerie' /tmp/silex-gallery.html
           grep -q 'Adresse de démonstration' /tmp/silex-contact.html
-          grep -q 'href="/sites/restaurant-01"' /tmp/restaurant.html
 
           available_count=$(grep -oE '<article[^>]*site-card--available[^>]*>' /tmp/home.html | wc -l | tr -d ' ')
           echo "Available demos: $available_count"
-          test "$available_count" -eq 2
+          test "$available_count" -eq 1
