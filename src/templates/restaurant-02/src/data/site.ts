@@ -73,7 +73,7 @@ export const district88Site: District88SiteData = {
     image("photo-1594212699903-ec8a3eca50f5", "Burger empilé avec fromage fondu", "STACK / 88", "square"),
     image("photo-1565299624946-b28f40a0ae38", "Plat chaud partagé sur une table de restauration rapide", "PASS / HOT", "landscape"),
     image("photo-1771308457742-a8a609a2fdde", "Cuisinier en plein service dans une cuisine professionnelle", "KITCHEN / 23:02", "landscape", "center 48%"),
-    image("photo-1768204039115-34f404d3a59d", "Burger, frites et boisson servis sur une table métallique", "NIGHT / SERVICE", "square", "center 48%"),
+    image("photo-1571805618149-3a772570ebcd", "Deux burgers et des frites servis sur un plateau", "NIGHT / SERVICE", "square", "center 50%"),
     image("photo-1644940733241-d2512327ed2b", "Burger au poulet frit tenu à la main", "LAST CALL", "portrait", "center 42%"),
   ],
   concept: {
