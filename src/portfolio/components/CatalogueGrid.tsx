@@ -5,23 +5,19 @@ type CatalogueGridProps = {
   sites: PortfolioSite[];
 };
 
-function getLayoutVariant(site: PortfolioSite, index: number) {
-  if (site.status === "available") {
-    return "feature";
-  }
+const spanPattern = ["wide", "narrow", "half", "half", "narrow", "wide"] as const;
 
-  if (index % 4 === 1) {
-    return "compact";
-  }
+type LayoutVariant = (typeof spanPattern)[number];
 
-  return "standard";
+function getLayoutVariant(index: number): LayoutVariant {
+  return spanPattern[index % spanPattern.length];
 }
 
 export function CatalogueGrid({ sites }: CatalogueGridProps) {
   return (
     <ul className="catalogue-grid">
       {sites.map((site, index) => {
-        const variant = getLayoutVariant(site, index);
+        const variant = getLayoutVariant(index);
 
         return (
           <li className={`catalogue-grid__item catalogue-grid__item--${variant}`} key={site.id}>
