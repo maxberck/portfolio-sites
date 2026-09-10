@@ -8,10 +8,7 @@ export function PortfolioFooter() {
   return (
     <footer className="portfolio-footer">
       <div className="portfolio-footer__inner">
-        <div>
-          <p className="portfolio-footer__label">Sites vitrines · Belgique</p>
-          <p className="portfolio-footer__title">Choisissez une direction. On l’adapte à votre activité.</p>
-        </div>
+        <p className="portfolio-footer__title">Sites vitrines / Portfolio 2026</p>
 
         <nav className="portfolio-footer__links" aria-label="Liens de pied de page">
           {siteCategories.map((category) => (
@@ -19,7 +16,7 @@ export function PortfolioFooter() {
               {category.id === "tatoueur" ? "Tattoo" : category.label}
             </Link>
           ))}
-          <a href="https://github.com/maxberck" target="_blank" rel="noreferrer">GitHub</a>
+          <a href="https://github.com/maxberck" target="_blank" rel="noreferrer">GitHub ↗</a>
         </nav>
 
         <p className="portfolio-footer__copyright">© {year}</p>
