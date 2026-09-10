@@ -20,9 +20,9 @@ export function PortfolioHeader() {
           ))}
         </nav>
 
-        <a className="portfolio-header__cta" href="/#contact">
+        <Link className="portfolio-header__cta" href="/#contact">
           Créer mon site
-        </a>
+        </Link>
       </div>
     </header>
   );
