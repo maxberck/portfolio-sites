@@ -1,28 +1,33 @@
 import { EditorialImage } from "../components/EditorialImage";
-import { SectionLabel } from "../components/SectionLabel";
 import { silexSite } from "../src/data/site";
 
 export function GalleryPage() {
   return (
-    <>
-      <section className="silex-page-intro silex-page-intro--gallery">
-        <SectionLabel>Assiettes · matières · salle</SectionLabel>
-        <h1>Galerie</h1>
-        <p className="silex-page-intro__statement">
-          Une sélection d’images pensée comme un carnet de service, entre gestes, produits et atmosphère.
-        </p>
+    <div className="silex-gallery-page" data-silex-page="gallery-sequence">
+      <section className="silex-gallery-stage">
+        <EditorialImage image={silexSite.gallery[0]} className="silex-gallery-stage__image" preload sizes="100vw" />
+        <div className="silex-gallery-stage__veil" aria-hidden="true" />
+        <div className="silex-gallery-stage__copy">
+          <span>Assiettes · matières · salle</span>
+          <h1>Galerie</h1>
+        </div>
       </section>
 
-      <section className="silex-gallery" aria-label="Galerie Maison Silex">
-        {silexSite.gallery.map((image, index) => (
-          <EditorialImage
-            key={image.src}
-            image={image}
-            className={`silex-gallery__item silex-gallery__item--${index + 1}`}
-            sizes={index === 0 ? "(max-width: 820px) 100vw, 62vw" : "(max-width: 820px) 100vw, 38vw"}
-          />
-        ))}
+      <section className="silex-gallery-pair" aria-label="Séquence photographique Maison Silex">
+        <EditorialImage image={silexSite.gallery[2]} className="silex-gallery-pair__landscape" sizes="(max-width: 767px) 100vw, 62vw" />
+        <EditorialImage image={silexSite.gallery[1]} className="silex-gallery-pair__portrait" sizes="(max-width: 767px) 100vw, 31vw" />
       </section>
-    </>
+
+      <section className="silex-contact-sheet" aria-label="Détails de la Maison">
+        <EditorialImage image={silexSite.gallery[3]} className="silex-contact-sheet__item" sizes="(max-width: 767px) 100vw, 33vw" />
+        <EditorialImage image={silexSite.gallery[4]} className="silex-contact-sheet__item" sizes="(max-width: 767px) 100vw, 33vw" />
+        <EditorialImage image={silexSite.chef.image} className="silex-contact-sheet__item" sizes="(max-width: 767px) 100vw, 33vw" />
+      </section>
+
+      <section className="silex-gallery-isolated">
+        <p>Une cuisine qui préfère la matière au décor.</p>
+        <EditorialImage image={silexSite.hero.image} className="silex-gallery-isolated__image" sizes="(max-width: 767px) 100vw, 42vw" />
+      </section>
+    </div>
   );
 }

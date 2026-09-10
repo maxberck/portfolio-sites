@@ -34,12 +34,13 @@ export type SilexSiteConfig = {
     descriptor: string;
   };
   colors: {
-    background: string;
+    ink: string;
+    wine: string;
+    paper: string;
     surface: string;
-    text: string;
+    butter: string;
     muted: string;
-    accent: string;
-    line: string;
+    white: string;
   };
   navigation: SilexNavItem[];
   hero: {

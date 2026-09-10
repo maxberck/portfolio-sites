@@ -90,7 +90,14 @@ export const portfolioSites: PortfolioSite[] = [
     direction: "Gastronomique / luxe",
     summary: "Une table haut de gamme au rythme lent, portée par une typographie raffinée et une photographie culinaire très présente.",
     href: "/sites/restaurant-01",
-    status: "planned",
+    status: "available",
+    preview: {
+      src: "/previews/restaurant-01-home.webp",
+      alt: "Aperçu de la page d'accueil du restaurant gastronomique Maison Silex",
+      width: 1440,
+      height: 1000,
+      focalPosition: "center top",
+    },
   },
   {
     id: "restaurant-02",
