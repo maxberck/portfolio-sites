@@ -8,6 +8,7 @@ on:
       - '.github/workflows/terra-visual-qa.yml'
       - 'app/sites/restaurant-03/**'
       - 'src/templates/restaurant-03/**'
+      - 'scripts/capture-terra.mjs'
   workflow_dispatch:
 
 permissions:
@@ -32,8 +33,10 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Install Chromium
-        run: npx --yes playwright@latest install --with-deps chromium
+      - name: Install Playwright and Chromium
+        run: |
+          npm install --no-save --package-lock=false playwright@latest
+          npx playwright install --with-deps chromium
 
       - name: Capture Terra viewports
         shell: bash
@@ -56,20 +59,7 @@ jobs:
             exit 1
           fi
 
-          mkdir -p /tmp/terra-qa
-
-          for viewport in "1440,1000:desktop-1440" "768,1024:tablet-768" "375,812:mobile-375"; do
-            size="${viewport%%:*}"
-            label="${viewport##*:}"
-            npx --yes playwright@latest screenshot --browser=chromium --viewport-size="$size" --wait-for-timeout=2500 --full-page http://127.0.0.1:3000/sites/restaurant-03 "/tmp/terra-qa/home-${label}-full.png"
-            npx --yes playwright@latest screenshot --browser=chromium --viewport-size="$size" --wait-for-timeout=2500 --full-page http://127.0.0.1:3000/sites/restaurant-03/menu "/tmp/terra-qa/menu-${label}-full.png"
-            npx --yes playwright@latest screenshot --browser=chromium --viewport-size="$size" --wait-for-timeout=2500 --full-page http://127.0.0.1:3000/sites/restaurant-03/galerie "/tmp/terra-qa/gallery-${label}-full.png"
-          done
-
-          npx --yes playwright@latest screenshot --browser=chromium --viewport-size="1440,1000" --wait-for-timeout=2500 --full-page http://127.0.0.1:3000/sites/restaurant-03/table /tmp/terra-qa/table-desktop-1440-full.png
-          npx --yes playwright@latest screenshot --browser=chromium --viewport-size="375,812" --wait-for-timeout=2500 --full-page http://127.0.0.1:3000/sites/restaurant-03/table /tmp/terra-qa/table-mobile-375-full.png
-          npx --yes playwright@latest screenshot --browser=chromium --viewport-size="1440,1000" --wait-for-timeout=2500 --full-page http://127.0.0.1:3000/sites/restaurant-03/contact /tmp/terra-qa/contact-desktop-1440-full.png
-          npx --yes playwright@latest screenshot --browser=chromium --viewport-size="375,812" --wait-for-timeout=2500 --full-page http://127.0.0.1:3000/sites/restaurant-03/contact /tmp/terra-qa/contact-mobile-375-full.png
+          TERRA_QA_DIR=/tmp/terra-qa node scripts/capture-terra.mjs
 
       - name: Upload Terra visual QA artifact
         uses: actions/upload-artifact@v4
