@@ -1,0 +1,31 @@
+@media (min-width: 821px) {
+  .d88-contact-sheet__item--1,
+  .d88-contact-sheet__item--2 {
+    grid-row: 1;
+  }
+
+  .d88-contact-sheet__item--3,
+  .d88-contact-sheet__item--4 {
+    grid-row: 2;
+  }
+
+  .d88-contact-sheet__item--5,
+  .d88-contact-sheet__item--6 {
+    grid-row: 3;
+  }
+
+  .d88-contact-sheet__item--7,
+  .d88-contact-sheet__item--8 {
+    grid-row: 4;
+  }
+
+  .d88-contact-sheet__item--8 {
+    align-self: end;
+    transform: translateY(2.5rem) rotate(1.25deg);
+  }
+
+  .d88-contact-sheet__item--9 {
+    grid-row: 5;
+    margin-top: -3rem;
+  }
+}
