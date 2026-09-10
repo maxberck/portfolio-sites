@@ -64,7 +64,7 @@ export default function HomePage() {
           <div className="portfolio-container">
             <div className="portfolio-section-heading">
               <div>
-                <p className="portfolio-label">SÉLECTION</p>
+                <p className="portfolio-label">Sélection</p>
                 <h2 id="selection-title">Quatre directions.</h2>
               </div>
               <p>Les autres projets sont classés par métier.</p>
