@@ -27,23 +27,27 @@ export function CategoryPage({ category }: CategoryPageProps) {
       <PortfolioHeader />
 
       <main>
-        <section className="category-hero">
+        <section className="category-hero" data-category={category}>
           <div className="portfolio-container category-hero__grid">
-            <p className="category-hero__label">Sites vitrines / {displayLabel}</p>
-            <h1>{displayLabel}</h1>
-            <p className="category-hero__intro">{definition.description}</p>
+            <div>
+              <p className="portfolio-label">COLLECTION</p>
+              <h1>{displayLabel}</h1>
+            </div>
+            <p className="category-hero__description">{definition.description}</p>
           </div>
         </section>
 
         <section className="category-page__catalogue" id="catalogue">
           <div className="portfolio-container">
             <CategoryNavigation activeCategory={category} />
-            <CatalogueGrid sites={sites} />
+            <CatalogueGrid sites={sites} variant="category" />
           </div>
         </section>
 
         <div className="portfolio-container category-page__return-wrap">
-          <Link className="category-page__return" href="/">← Tous les projets</Link>
+          <Link className="portfolio-text-link category-page__return" href="/">
+            ← Retour à la sélection
+          </Link>
         </div>
       </main>
 
