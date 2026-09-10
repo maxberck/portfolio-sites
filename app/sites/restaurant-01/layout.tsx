@@ -6,6 +6,7 @@ import { SilexHeader } from "@/src/templates/restaurant-01/components/SilexHeade
 import { silexThemeStyle } from "@/src/templates/restaurant-01/lib/theme";
 import { silexSite } from "@/src/templates/restaurant-01/src/data/site";
 import "@/src/templates/restaurant-01/styles/silex.css";
+import "@/src/templates/restaurant-01/styles/silex-contrast.css";
 
 const silexDisplay = Bodoni_Moda({
   subsets: ["latin"],

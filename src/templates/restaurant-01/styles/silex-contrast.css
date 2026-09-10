@@ -1,0 +1,16 @@
+.silex-header::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  z-index: -1;
+  height: 94px;
+  background: rgba(31, 20, 21, 0.2);
+  pointer-events: none;
+}
+
+@media (max-width: 767px) {
+  .silex-header::before {
+    height: 78px;
+    background: rgba(31, 20, 21, 0.26);
+  }
+}

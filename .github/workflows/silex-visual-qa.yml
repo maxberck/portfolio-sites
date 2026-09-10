@@ -6,6 +6,8 @@ on:
       - feat/restaurant-01-silex-redesign
     paths:
       - '.github/workflows/silex-visual-qa.yml'
+      - 'app/sites/restaurant-01/**'
+      - 'src/templates/restaurant-01/**'
   workflow_dispatch:
 
 permissions:
