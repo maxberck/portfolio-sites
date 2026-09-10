@@ -46,7 +46,7 @@ export function SiteCard({ site }: SiteCardProps) {
       </div>
       <p>{site.summary}</p>
       <span className="site-card__status">
-        {site.status === "available" ? "Démo disponible" : "Bientôt disponible"}
+        {site.status === "available" ? "Voir la démo ↗" : "En préparation"}
       </span>
     </div>
   );
@@ -58,7 +58,15 @@ export function SiteCard({ site }: SiteCardProps) {
       data-site-card={site.id}
     >
       {site.status === "available" ? (
-        <Link className="site-card__link" href={site.href} prefetch={false}>
+        <Link
+          className="site-card__link"
+          href={site.href}
+          prefetch={false}
+          target="_blank"
+          rel="noreferrer"
+          data-demo-link="true"
+          aria-label={`${site.name} — voir la démo (nouvel onglet)`}
+        >
           {visual}
           {details}
         </Link>
