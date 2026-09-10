@@ -6,6 +6,7 @@ import { TerraFooter } from "@/src/templates/restaurant-03/components/TerraFoote
 import { TerraHeader } from "@/src/templates/restaurant-03/components/TerraHeader";
 import { terraThemeStyle } from "@/src/templates/restaurant-03/lib/theme";
 import { terraSite } from "@/src/templates/restaurant-03/src/data/site";
+import "@/src/templates/restaurant-03/styles/terra.css";
 
 const terraDisplay = Fraunces({
   subsets: ["latin"],
