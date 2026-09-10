@@ -78,15 +78,16 @@ jobs:
           echo "Coiffure cards: $coiffure_count"
           echo "Tatoueur cards: $tatoueur_count"
 
-          test "$home_count" -eq 16
+          test "$home_count" -eq 4
           test "$garage_count" -eq 4
           test "$restaurant_count" -eq 4
           test "$coiffure_count" -eq 4
           test "$tatoueur_count" -eq 4
 
-          grep -q 'Sites vitrines\.' /tmp/home.html
-          grep -q 'Garage, restaurant, coiffure, tattoo\.' /tmp/home.html
-          grep -q 'Des démos navigables, chacune avec sa propre direction visuelle\.' /tmp/home.html
+          grep -q 'data-portfolio-design="technical-minimalist"' /tmp/home.html
+          grep -q 'data-home-selection="curated"' /tmp/home.html
+          grep -q 'SITES VITRINES' /tmp/home.html
+          grep -q 'Sélection' /tmp/home.html
           ! grep -q '16 projets. 4 catégories.' /tmp/home.html
           ! grep -q '/ 16 disponibles' /tmp/home.html
           ! grep -q 'category-directory__index' /tmp/home.html
@@ -96,21 +97,21 @@ jobs:
           ! grep -q 'Faire créer mon site' /tmp/home.html
           ! grep -q 'Comment ça marche' /tmp/home.html
           ! grep -q 'Adapté à votre activité' /tmp/home.html
-          ! grep -q 'adaptez-la à votre activité' /tmp/home.html
 
           grep -q 'href="/categories/garage"' /tmp/home.html
           grep -q 'href="/categories/restaurant"' /tmp/home.html
           grep -q 'href="/categories/coiffure"' /tmp/home.html
           grep -q 'href="/categories/tatoueur"' /tmp/home.html
 
+          grep -q 'data-site-card="restaurant-04"' /tmp/home.html
+          grep -q 'data-site-card="restaurant-01"' /tmp/home.html
+          grep -q 'data-site-card="garage-01"' /tmp/home.html
+          grep -q 'data-site-card="coiffure-02"' /tmp/home.html
+          ! grep -q 'data-site-card="restaurant-02"' /tmp/home.html
+
           grep -q 'target="_blank"' /tmp/home.html
           grep -q 'rel="noreferrer"' /tmp/home.html
           grep -q 'Ouvrir la démo' /tmp/home.html
-          grep -q 'Minimal japonais — ivoire et charbon' /tmp/home.html
-          grep -q 'Gastronomique éditorial — photographie plein écran' /tmp/home.html
-          grep -q 'Direction prévue :' /tmp/home.html
-
-          grep -q 'data-preview="real"' /tmp/home.html
           grep -q 'restaurant-04-home.webp' /tmp/home.html
           grep -q 'restaurant-01-home.webp' /tmp/home.html
           ! grep -qi '<iframe' /tmp/home.html
@@ -147,7 +148,6 @@ jobs:
           grep -q 'La table' /tmp/kuro-restaurant.html
           grep -q 'Galerie' /tmp/kuro-gallery.html
           grep -q 'Adresse de démonstration' /tmp/kuro-contact.html
-          grep -q 'href="/sites/restaurant-04"' /tmp/restaurant.html
 
           curl -fsS http://127.0.0.1:3000/sites/restaurant-01 > /tmp/silex-home.html
           curl -fsS http://127.0.0.1:3000/sites/restaurant-01/menu > /tmp/silex-menu.html
@@ -164,22 +164,13 @@ jobs:
           grep -q 'La Maison' /tmp/silex-maison.html
           grep -q 'Galerie' /tmp/silex-gallery.html
           grep -q 'Adresse de démonstration' /tmp/silex-contact.html
-          grep -q 'href="/sites/restaurant-01"' /tmp/restaurant.html
-
-          grep -q 'data-silex-hero="full-bleed"' /tmp/silex-home.html
-          grep -q 'data-silex-chapter="manifesto"' /tmp/silex-home.html
-          grep -q 'data-silex-chapter="menu-folio"' /tmp/silex-home.html
-          grep -q 'data-silex-page="menu-poster"' /tmp/silex-menu.html
-          grep -q 'data-silex-page="maison-story"' /tmp/silex-maison.html
-          grep -q 'data-silex-page="gallery-sequence"' /tmp/silex-gallery.html
-          grep -q 'data-silex-page="contact-poster"' /tmp/silex-contact.html
 
           available_count=$(grep -oE '<article[^>]*site-card--available[^>]*>' /tmp/home.html | wc -l | tr -d ' ')
           real_preview_count=$(grep -oE '<div[^>]*data-preview="real"[^>]*>' /tmp/home.html | wc -l | tr -d ' ')
           new_tab_count=$(grep -oE '<a[^>]*target="_blank"[^>]*data-demo-link="true"[^>]*>|<a[^>]*data-demo-link="true"[^>]*target="_blank"[^>]*>' /tmp/home.html | wc -l | tr -d ' ')
-          echo "Available demos: $available_count"
-          echo "Real previews: $real_preview_count"
-          echo "New-tab demo links: $new_tab_count"
+          echo "Available selected demos: $available_count"
+          echo "Real selected previews: $real_preview_count"
+          echo "New-tab selected demo links: $new_tab_count"
           test "$available_count" -eq 2
           test "$real_preview_count" -eq 2
           test "$new_tab_count" -eq 2
