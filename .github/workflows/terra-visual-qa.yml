@@ -1,0 +1,80 @@
+name: Terra visual QA
+
+on:
+  push:
+    branches:
+      - 'feat/restaurant-03-terra-build'
+    paths:
+      - '.github/workflows/terra-visual-qa.yml'
+      - 'app/sites/restaurant-03/**'
+      - 'src/templates/restaurant-03/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Install Chromium
+        run: npx --yes playwright@latest install --with-deps chromium
+
+      - name: Capture Terra viewports
+        shell: bash
+        run: |
+          npm run start -- -p 3000 > /tmp/terra-next.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
+
+          ready=0
+          for attempt in {1..30}; do
+            if curl -fsS http://127.0.0.1:3000/sites/restaurant-03 > /dev/null; then
+              ready=1
+              break
+            fi
+            sleep 1
+          done
+
+          if [ "$ready" -ne 1 ]; then
+            cat /tmp/terra-next.log
+            exit 1
+          fi
+
+          mkdir -p /tmp/terra-qa
+
+          for viewport in "1440,1000:desktop-1440" "768,1024:tablet-768" "375,812:mobile-375"; do
+            size="${viewport%%:*}"
+            label="${viewport##*:}"
+            npx --yes playwright@latest screenshot --browser=chromium --viewport-size="$size" --wait-for-timeout=2500 --full-page http://127.0.0.1:3000/sites/restaurant-03 "/tmp/terra-qa/home-${label}-full.png"
+            npx --yes playwright@latest screenshot --browser=chromium --viewport-size="$size" --wait-for-timeout=2500 --full-page http://127.0.0.1:3000/sites/restaurant-03/menu "/tmp/terra-qa/menu-${label}-full.png"
+            npx --yes playwright@latest screenshot --browser=chromium --viewport-size="$size" --wait-for-timeout=2500 --full-page http://127.0.0.1:3000/sites/restaurant-03/galerie "/tmp/terra-qa/gallery-${label}-full.png"
+          done
+
+          npx --yes playwright@latest screenshot --browser=chromium --viewport-size="1440,1000" --wait-for-timeout=2500 --full-page http://127.0.0.1:3000/sites/restaurant-03/table /tmp/terra-qa/table-desktop-1440-full.png
+          npx --yes playwright@latest screenshot --browser=chromium --viewport-size="375,812" --wait-for-timeout=2500 --full-page http://127.0.0.1:3000/sites/restaurant-03/table /tmp/terra-qa/table-mobile-375-full.png
+          npx --yes playwright@latest screenshot --browser=chromium --viewport-size="1440,1000" --wait-for-timeout=2500 --full-page http://127.0.0.1:3000/sites/restaurant-03/contact /tmp/terra-qa/contact-desktop-1440-full.png
+          npx --yes playwright@latest screenshot --browser=chromium --viewport-size="375,812" --wait-for-timeout=2500 --full-page http://127.0.0.1:3000/sites/restaurant-03/contact /tmp/terra-qa/contact-mobile-375-full.png
+
+      - name: Upload Terra visual QA artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: terra-mediterranean-table-qa
+          path: /tmp/terra-qa/*.png
+          if-no-files-found: error
+          retention-days: 7
