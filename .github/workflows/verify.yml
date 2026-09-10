@@ -5,6 +5,7 @@ on:
     branches:
       - feat/portfolio-architecture
       - feat/restaurant-04-japanese-minimal
+      - feat/restaurant-01-maison-silex
   pull_request:
     branches:
       - main
@@ -104,6 +105,22 @@ jobs:
           grep -q 'Galerie' /tmp/kuro-gallery.html
           grep -q 'Adresse de démonstration' /tmp/kuro-contact.html
           grep -q 'href="/sites/restaurant-04"' /tmp/restaurant.html
+
+          curl -fsS http://127.0.0.1:3000/sites/restaurant-01 > /tmp/silex-home.html
+          curl -fsS http://127.0.0.1:3000/sites/restaurant-01/menu > /tmp/silex-menu.html
+          curl -fsS http://127.0.0.1:3000/sites/restaurant-01/maison > /tmp/silex-maison.html
+          curl -fsS http://127.0.0.1:3000/sites/restaurant-01/galerie > /tmp/silex-gallery.html
+          curl -fsS http://127.0.0.1:3000/sites/restaurant-01/contact > /tmp/silex-contact.html
+
+          for page in /tmp/silex-home.html /tmp/silex-menu.html /tmp/silex-maison.html /tmp/silex-gallery.html /tmp/silex-contact.html; do
+            grep -q 'name="robots" content="noindex, follow"' "$page"
+          done
+
+          grep -q 'Une cuisine de saison, précise et sensible.' /tmp/silex-home.html
+          grep -q 'Menu dégustation' /tmp/silex-menu.html
+          grep -q 'La Maison' /tmp/silex-maison.html
+          grep -q 'Galerie' /tmp/silex-gallery.html
+          grep -q 'Adresse de démonstration' /tmp/silex-contact.html
 
           available_count=$(grep -oE '<article[^>]*site-card--available[^>]*>' /tmp/home.html | wc -l | tr -d ' ')
           echo "Available demos: $available_count"
