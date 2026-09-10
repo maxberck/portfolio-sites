@@ -121,7 +121,8 @@ jobs:
           grep -q 'La Maison' /tmp/silex-maison.html
           grep -q 'Galerie' /tmp/silex-gallery.html
           grep -q 'Adresse de démonstration' /tmp/silex-contact.html
+          grep -q 'href="/sites/restaurant-01"' /tmp/restaurant.html
 
           available_count=$(grep -oE '<article[^>]*site-card--available[^>]*>' /tmp/home.html | wc -l | tr -d ' ')
           echo "Available demos: $available_count"
-          test "$available_count" -eq 1
+          test "$available_count" -eq 2
