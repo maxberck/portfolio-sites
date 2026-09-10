@@ -54,4 +54,4 @@ jobs:
             exit 1
           fi
 
-          node scripts/smoke-garage01.mjs
+          GARAGE01_REQUIRE_AVAILABLE=1 node scripts/smoke-garage01.mjs
