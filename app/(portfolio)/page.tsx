@@ -45,7 +45,7 @@ export default function HomePage() {
                     height={kuro.preview.height}
                     sizes="(max-width: 760px) 100vw, 46vw"
                     priority
-                    style={{ objectPosition: kuro.preview.focalPosition ?? "center top" }}
+                    style={{ objectPosition: "left top" }}
                   />
                   <span className="portfolio-hero__orbit" aria-hidden="true" />
                   <span className="portfolio-corner portfolio-corner--tl" aria-hidden="true" />
