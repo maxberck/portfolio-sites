@@ -68,10 +68,10 @@ export const district88Site: District88SiteData = {
   gallery: [
     image("photo-1568901346375-23c9450c58cd", "Cheeseburger serré en gros plan", "DOUBLE / 22:14", "square"),
     image("photo-1541592106381-b31e9677c0e5", "Frites dorées servies très chaudes", "FRIES / SALT", "portrait"),
-    image("photo-1550547660-d9450f859349", "Burger et accompagnement sur une table de diner", "TABLE 08", "landscape"),
+    image("photo-1573502641713-edc392a0ef30", "Burger et frites servis sans marque visible", "TABLE 08", "landscape", "center 48%"),
     image("photo-1576107232684-1279f390859f", "Poulet frit croustillant servi en street food", "FRIED / CRUNCH", "portrait"),
     image("photo-1594212699903-ec8a3eca50f5", "Burger empilé avec fromage fondu", "STACK / 88", "square"),
-    image("photo-1565299624946-b28f40a0ae38", "Plat chaud partagé sur une table de restauration rapide", "PASS / HOT", "landscape"),
+    image("photo-1762596815818-710d28ffd5bf", "Street-food vendor préparant des burgers de nuit", "PASS / HOT", "landscape", "center 50%"),
     image("photo-1771308457742-a8a609a2fdde", "Cuisinier en plein service dans une cuisine professionnelle", "KITCHEN / 23:02", "landscape", "center 48%"),
     image("photo-1571805618149-3a772570ebcd", "Deux burgers et des frites servis sur un plateau", "NIGHT / SERVICE", "square", "center 50%"),
     image("photo-1644940733241-d2512327ed2b", "Burger au poulet frit tenu à la main", "LAST CALL", "portrait", "center 42%"),
