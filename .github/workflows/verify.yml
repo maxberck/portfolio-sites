@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - feat/portfolio-architecture
+      - feat/restaurant-04-japanese-minimal
   pull_request:
     branches:
       - main
@@ -86,3 +87,20 @@ jobs:
           grep -q "Des sites vitrines pensés comme de vrais sites clients" /tmp/home.html
           test -s /tmp/robots.txt
           test -s /tmp/sitemap.xml
+
+          curl -fsS http://127.0.0.1:3000/sites/restaurant-04 > /tmp/kuro-home.html
+          curl -fsS http://127.0.0.1:3000/sites/restaurant-04/menu > /tmp/kuro-menu.html
+          curl -fsS http://127.0.0.1:3000/sites/restaurant-04/restaurant > /tmp/kuro-restaurant.html
+          curl -fsS http://127.0.0.1:3000/sites/restaurant-04/galerie > /tmp/kuro-gallery.html
+          curl -fsS http://127.0.0.1:3000/sites/restaurant-04/contact > /tmp/kuro-contact.html
+
+          for page in /tmp/kuro-home.html /tmp/kuro-menu.html /tmp/kuro-restaurant.html /tmp/kuro-gallery.html /tmp/kuro-contact.html; do
+            grep -q 'name="robots" content="noindex, follow"' "$page"
+          done
+
+          grep -q 'Précision. Saison. Silence.' /tmp/kuro-home.html
+          grep -q 'Omakase' /tmp/kuro-menu.html
+          grep -q 'La table' /tmp/kuro-restaurant.html
+          grep -q 'Galerie' /tmp/kuro-gallery.html
+          grep -q 'Adresse de démonstration' /tmp/kuro-contact.html
+          grep -q 'site-card--available' /tmp/restaurant.html
