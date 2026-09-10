@@ -7,58 +7,72 @@ import { PortfolioHeader } from "@/src/portfolio/components/PortfolioHeader";
 import { portfolioSites, siteCategories } from "@/src/portfolio/data/sites";
 
 export default function HomePage() {
+  const availableCount = portfolioSites.filter((site) => site.status === "available").length;
+  const catalogueSites = [...portfolioSites].sort((a, b) => {
+    if (a.status === b.status) {
+      return 0;
+    }
+
+    return a.status === "available" ? -1 : 1;
+  });
+
   return (
     <>
       <PortfolioHeader />
 
       <main>
-        <section className="hero">
-          <div className="hero__inner">
-            <div className="hero__copy">
-              <p className="hero__eyebrow">Portfolio web / sélection 2026</p>
-              <h1 className="hero__title">Des sites vitrines pensés comme de vrais sites clients.</h1>
+        <section className="portfolio-hero">
+          <div className="portfolio-container portfolio-hero__grid">
+            <div className="portfolio-hero__copy">
+              <p className="portfolio-kicker">Sites vitrines pour indépendants et petites entreprises</p>
+              <h1>Des sites qui ressemblent à de vraies marques.</h1>
             </div>
 
-            <div className="hero__bottom">
-              <p className="hero__lead">
-                Un catalogue de directions web complètes pour l&apos;automobile, la restauration,
-                la coiffure et le tatouage. Chaque modèle est conçu pour devenir un site réel,
-                pas une simple image de présentation.
-              </p>
+            <div className="portfolio-hero__aside">
+              <p>Choisissez une direction, explorez la démo, adaptez-la à votre activité.</p>
+              <div className="portfolio-hero__actions">
+                <a className="button button--dark" href="#catalogue">Voir les sites</a>
+                <a className="button button--text" href="#contact">Créer mon site →</a>
+              </div>
+            </div>
 
-              <ul className="hero__meta" aria-label="Résumé du catalogue">
-                <li>
-                  <strong>16</strong>
-                  <span>directions prévues</span>
-                </li>
-                <li>
-                  <strong>04</strong>
-                  <span>univers métiers</span>
-                </li>
-              </ul>
+            <div className="portfolio-hero__status" aria-label={`${availableCount} démo disponible sur 16`}>
+              <strong>{String(availableCount).padStart(2, "0")}</strong>
+              <span>/ 16 live</span>
             </div>
           </div>
         </section>
 
-        <section className="categories-section" id="categories">
+        <section className="catalogue-section" id="catalogue">
           <div className="portfolio-container">
-            <p className="section-kicker">Parcourir</p>
-            <div className="section-heading-row">
-              <h2 className="section-title">Quatre métiers, quatre façons de raconter une activité.</h2>
-              <p className="section-copy">
-                Les modèles ne partagent pas une mise en page simplement recolorée. Chaque
-                collection explore des rythmes, des typographies et des compositions différents.
-              </p>
+            <div className="catalogue-toolbar">
+              <div>
+                <p className="portfolio-kicker">Sélection</p>
+                <h2>Choisir un style de site</h2>
+              </div>
+              <p className="catalogue-toolbar__note">16 directions · 4 métiers</p>
             </div>
 
-            <ol className="category-index">
+            <CategoryNavigation />
+            <CatalogueGrid sites={catalogueSites} />
+          </div>
+        </section>
+
+        <section className="category-directory" aria-labelledby="category-directory-title">
+          <div className="portfolio-container">
+            <div className="category-directory__head">
+              <p className="portfolio-kicker">Par métier</p>
+              <h2 id="category-directory-title">Allez directement à votre catégorie.</h2>
+            </div>
+
+            <ol className="category-directory__list">
               {siteCategories.map((category, index) => (
-                <li className="category-index__item" key={category.id}>
-                  <Link className="category-index__link" href={category.href}>
-                    <span className="category-index__number">0{index + 1}</span>
-                    <strong className="category-index__name">{category.label}</strong>
-                    <span className="category-index__description">{category.description}</span>
-                    <span className="category-index__arrow" aria-hidden="true">↗</span>
+                <li key={category.id}>
+                  <Link href={category.href} className="category-directory__link">
+                    <span className="category-directory__index">0{index + 1}</span>
+                    <strong>{category.id === "tatoueur" ? "Tattoo" : category.label}</strong>
+                    <span>{category.description}</span>
+                    <span aria-hidden="true">↗</span>
                   </Link>
                 </li>
               ))}
@@ -66,55 +80,49 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section className="catalogue-section" id="catalogue">
-          <div className="portfolio-container">
-            <div className="catalogue-head">
-              <div>
-                <p className="section-kicker">Catalogue</p>
-                <h2 className="catalogue-head__title">Les modèles</h2>
-              </div>
-              <p className="catalogue-head__count">16 directions enregistrées</p>
+        <section className="adaptation-section" aria-labelledby="adaptation-title">
+          <div className="portfolio-container adaptation-section__grid">
+            <div>
+              <p className="portfolio-kicker">Comment ça marche</p>
+              <h2 id="adaptation-title">Une base forte. Puis votre identité.</h2>
             </div>
 
-            <CategoryNavigation />
-            <CatalogueGrid sites={portfolioSites} />
-          </div>
-        </section>
-
-        <section className="process-section">
-          <div className="portfolio-container process-grid">
-            <div className="process-grid__intro">
-              <p className="section-kicker">Approche</p>
-              <h2>Une base exploitable, pas une maquette jetable.</h2>
-              <p>
-                Chaque démo est pensée pour être navigable, responsive, structurée pour le SEO
-                et suffisamment indépendante pour servir ensuite de point de départ à un client.
-              </p>
-            </div>
-
-            <ol className="process-list">
+            <ol className="adaptation-steps">
               <li>
                 <span>01</span>
                 <div>
-                  <strong>Direction propre</strong>
-                  <p>Chaque modèle possède sa composition, son rythme et son langage visuel.</p>
+                  <strong>Choisissez</strong>
+                  <p>Ouvrez une démo et trouvez la direction qui correspond le mieux à votre activité.</p>
                 </div>
               </li>
               <li>
                 <span>02</span>
                 <div>
-                  <strong>Navigation réelle</strong>
-                  <p>Les démos deviennent de vrais mini-sites, jamais des iframes ou des captures.</p>
+                  <strong>Adaptez</strong>
+                  <p>Nom, couleurs, textes, images, services et pages deviennent les vôtres.</p>
                 </div>
               </li>
               <li>
                 <span>03</span>
                 <div>
-                  <strong>Réutilisation simple</strong>
-                  <p>Contenu, couleurs et médias seront centralisés pour accélérer l&apos;adaptation client.</p>
+                  <strong>Publiez</strong>
+                  <p>La démo devient un site autonome prêt à représenter votre entreprise.</p>
                 </div>
               </li>
             </ol>
+          </div>
+        </section>
+
+        <section className="sales-cta" id="contact">
+          <div className="portfolio-container sales-cta__grid">
+            <p className="portfolio-kicker">Votre prochain site</p>
+            <h2>Vous aimez une direction ? Faisons-en la vôtre.</h2>
+            <div className="sales-cta__action">
+              <p>Partez d’un modèle ou utilisez-le simplement comme référence pour votre propre site.</p>
+              <a className="button button--light" href="https://github.com/maxberck" target="_blank" rel="noreferrer">
+                Créer mon site →
+              </a>
+            </div>
           </div>
         </section>
       </main>

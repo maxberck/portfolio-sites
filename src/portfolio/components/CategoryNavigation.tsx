@@ -9,7 +9,7 @@ type CategoryNavigationProps = {
 
 export function CategoryNavigation({ activeCategory }: CategoryNavigationProps) {
   return (
-    <nav className="category-nav" aria-label="Parcourir par catégorie">
+    <nav className="category-nav" aria-label="Parcourir les sites par métier">
       <Link
         href="/"
         className="category-nav__link"
@@ -25,7 +25,7 @@ export function CategoryNavigation({ activeCategory }: CategoryNavigationProps) 
           className="category-nav__link"
           aria-current={activeCategory === category.id ? "page" : undefined}
         >
-          {category.label}
+          {category.id === "tatoueur" ? "Tattoo" : `${category.label}s`}
         </Link>
       ))}
     </nav>
