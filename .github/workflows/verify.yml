@@ -1,0 +1,88 @@
+name: Verify portfolio
+
+on:
+  push:
+    branches:
+      - feat/portfolio-architecture
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Build
+        run: npm run build
+
+      - name: Smoke test routes and catalogue counts
+        shell: bash
+        run: |
+          npm run start -- -p 3000 > /tmp/portfolio-next.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
+
+          ready=0
+          for attempt in {1..30}; do
+            if curl -fsS http://127.0.0.1:3000/ > /tmp/home.html; then
+              ready=1
+              break
+            fi
+            sleep 1
+          done
+
+          if [ "$ready" -ne 1 ]; then
+            cat /tmp/portfolio-next.log
+            exit 1
+          fi
+
+          curl -fsS http://127.0.0.1:3000/categories/garage > /tmp/garage.html
+          curl -fsS http://127.0.0.1:3000/categories/restaurant > /tmp/restaurant.html
+          curl -fsS http://127.0.0.1:3000/categories/coiffure > /tmp/coiffure.html
+          curl -fsS http://127.0.0.1:3000/categories/tatoueur > /tmp/tatoueur.html
+          curl -fsS http://127.0.0.1:3000/robots.txt > /tmp/robots.txt
+          curl -fsS http://127.0.0.1:3000/sitemap.xml > /tmp/sitemap.xml
+
+          count_cards() {
+            grep -o 'data-site-card="[^"]*"' "$1" | sort -u | wc -l | tr -d ' '
+          }
+
+          home_count=$(count_cards /tmp/home.html)
+          garage_count=$(count_cards /tmp/garage.html)
+          restaurant_count=$(count_cards /tmp/restaurant.html)
+          coiffure_count=$(count_cards /tmp/coiffure.html)
+          tatoueur_count=$(count_cards /tmp/tatoueur.html)
+
+          echo "Homepage cards: $home_count"
+          echo "Garage cards: $garage_count"
+          echo "Restaurant cards: $restaurant_count"
+          echo "Coiffure cards: $coiffure_count"
+          echo "Tatoueur cards: $tatoueur_count"
+
+          test "$home_count" -eq 16
+          test "$garage_count" -eq 4
+          test "$restaurant_count" -eq 4
+          test "$coiffure_count" -eq 4
+          test "$tatoueur_count" -eq 4
+
+          grep -q "Des sites vitrines pensés comme de vrais sites clients" /tmp/home.html
+          test -s /tmp/robots.txt
+          test -s /tmp/sitemap.xml
