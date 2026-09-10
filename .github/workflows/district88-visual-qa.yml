@@ -1,0 +1,80 @@
+name: District 88 visual QA
+
+on:
+  push:
+    branches:
+      - 'feat/restaurant-02-district-88-build'
+    paths:
+      - '.github/workflows/district88-visual-qa.yml'
+      - 'app/sites/restaurant-02/**'
+      - 'src/templates/restaurant-02/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Install Chromium
+        run: npx --yes playwright@latest install --with-deps chromium
+
+      - name: Capture District 88 viewports
+        shell: bash
+        run: |
+          npm run start -- -p 3000 > /tmp/d88-next.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
+
+          ready=0
+          for attempt in {1..30}; do
+            if curl -fsS http://127.0.0.1:3000/sites/restaurant-02 > /dev/null; then
+              ready=1
+              break
+            fi
+            sleep 1
+          done
+
+          if [ "$ready" -ne 1 ]; then
+            cat /tmp/d88-next.log
+            exit 1
+          fi
+
+          mkdir -p /tmp/d88-qa
+
+          for viewport in "1440,1000:desktop-1440" "768,1024:tablet-768" "375,812:mobile-375"; do
+            size="${viewport%%:*}"
+            label="${viewport##*:}"
+            npx --yes playwright@latest screenshot --browser=chromium --viewport-size="$size" --wait-for-timeout=2000 --full-page http://127.0.0.1:3000/sites/restaurant-02 "/tmp/d88-qa/home-${label}-full.png"
+            npx --yes playwright@latest screenshot --browser=chromium --viewport-size="$size" --wait-for-timeout=2000 --full-page http://127.0.0.1:3000/sites/restaurant-02/menu "/tmp/d88-qa/menu-${label}-full.png"
+            npx --yes playwright@latest screenshot --browser=chromium --viewport-size="$size" --wait-for-timeout=2000 --full-page http://127.0.0.1:3000/sites/restaurant-02/galerie "/tmp/d88-qa/gallery-${label}-full.png"
+          done
+
+          npx --yes playwright@latest screenshot --browser=chromium --viewport-size="1440,1000" --wait-for-timeout=2000 --full-page http://127.0.0.1:3000/sites/restaurant-02/concept /tmp/d88-qa/concept-desktop-1440-full.png
+          npx --yes playwright@latest screenshot --browser=chromium --viewport-size="375,812" --wait-for-timeout=2000 --full-page http://127.0.0.1:3000/sites/restaurant-02/concept /tmp/d88-qa/concept-mobile-375-full.png
+          npx --yes playwright@latest screenshot --browser=chromium --viewport-size="1440,1000" --wait-for-timeout=2000 --full-page http://127.0.0.1:3000/sites/restaurant-02/contact /tmp/d88-qa/contact-desktop-1440-full.png
+          npx --yes playwright@latest screenshot --browser=chromium --viewport-size="375,812" --wait-for-timeout=2000 --full-page http://127.0.0.1:3000/sites/restaurant-02/contact /tmp/d88-qa/contact-mobile-375-full.png
+
+      - name: Upload District 88 visual QA artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: district88-poster-riot-qa
+          path: /tmp/d88-qa/*.png
+          if-no-files-found: error
+          retention-days: 7
