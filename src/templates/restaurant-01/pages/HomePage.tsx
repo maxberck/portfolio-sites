@@ -47,7 +47,7 @@ export function HomePage() {
       <section className="silex-signatures" aria-labelledby="silex-signatures-title">
         <div className="silex-signatures__heading">
           <SectionLabel>Quelques assiettes</SectionLabel>
-          <h2 id="silex-signatures-title">Le produit d'abord.</h2>
+          <h2 id="silex-signatures-title">Le produit d’abord.</h2>
         </div>
 
         <div className="silex-signatures__grid">
