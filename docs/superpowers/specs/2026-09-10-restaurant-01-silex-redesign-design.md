@@ -87,33 +87,35 @@ Pas de noir + or classique. Pas de rouge laqué Kuro.
 
 Les valeurs client-editables continuent d'être exposées via `site.ts` puis traduites en variables CSS au boundary du template.
 
-## 6. Typography — different family and behavior
+## 6. Typography — guaranteed distinct from Kuro
 
-Kuro utilise actuellement Georgia / Times pour ses grands titres avec une grotesque utilitaire.
+Kuro utilise Georgia / Times pour ses grands titres et Arial pour l'utility text. Maison Silex ne doit donc pas dépendre d'une pile système qui peut retomber sur les mêmes fontes selon l'OS.
 
-Maison Silex ne doit pas utiliser Georgia pour ses headings.
+Utiliser `next/font/google`, scoped uniquement au layout Maison Silex :
 
-Display stack :
+- display : `Bodoni_Moda` ;
+- body / navigation : `DM_Sans`.
+
+Aucune de ces fontes ne doit être appliquée globalement au portfolio ou à Kuro.
+
+Exposer les deux fontes via variables CSS locales, par exemple :
 
 ```css
-font-family: "Bodoni 72", Didot, "Bodoni MT", "Hoefler Text", "Times New Roman", serif;
+.silex-site {
+  --silex-display-font: var(--font-silex-display);
+  --silex-body-font: var(--font-silex-body);
+}
 ```
 
-Utiliser ce display avec :
+Comportement display :
 
-- contraste très fort entre roman et italic ;
+- contraste fort entre roman et italic ;
 - mots très grands pouvant dépasser 10vw sur desktop ;
 - titres parfois en italic pur ;
 - line-height serré autour de 0.86–0.98 pour les grandes compositions ;
 - aucune répétition systématique du même couple eyebrow + title.
 
-Utility/body stack :
-
-```css
-font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
-```
-
-Le corps reste lisible et relativement compact.
+Le body reste compact et lisible en `DM Sans`.
 
 Les petits marqueurs de chapitres utilisent des chiffres grands ou des libellés latéraux, pas les mêmes uppercase micro-labels que Kuro.
 
@@ -143,7 +145,7 @@ Mobile : bouton `Menu` explicite ouvrant un panneau plein écran bordeaux ou pru
 
 **Kuro:** Georgia/Times régulière, titres calmes et structurés.
 
-**Silex:** Bodoni/Didot expressive, italic fréquent, tailles extrêmes et compositions typographiques comme dans un magazine.
+**Silex:** Bodoni Moda expressive, italic fréquent, tailles extrêmes et compositions typographiques comme dans un magazine.
 
 ### 5. Section order and form
 
@@ -298,7 +300,7 @@ Mobile :
 
 Cette page est plus narrative que la homepage.
 
-Structure recommandée :
+Structure :
 
 1. photo d'intérieur plein écran avec titre superposé ;
 2. histoire de la Maison dans une colonne étroite décalée ;
@@ -335,7 +337,7 @@ Le contact doit être presque l'opposé du contact Kuro.
 Composition :
 
 - surface prune ou bordeaux dominante ;
-- `Nous trouver` ou `Bruxelles` en display très grand ;
+- `Bruxelles` comme display principal ;
 - coordonnées dans de grands blocs typographiques ;
 - horaires comme liste simple ;
 - label explicite `Adresse de démonstration` ;
@@ -411,7 +413,7 @@ Motion minimale :
 
 - réduire les overlaps ;
 - conserver les backgrounds pleine largeur ;
-- navigation peut passer au bouton menu plus tôt que Kuro ;
+- navigation passe au bouton menu lorsque les cinq liens ne tiennent plus confortablement ;
 - spreads deviennent 55/45 ou une composition verticale alternée.
 
 ### Mobile <= 767px
@@ -490,7 +492,7 @@ Conserver les gates :
 - `npm run build` ;
 - smoke tests HTTP.
 
-Ajouter/adapter les assertions Maison Silex pour vérifier :
+Adapter les assertions Maison Silex pour vérifier :
 
 - les cinq routes existantes répondent ;
 - `noindex, follow` reste présent ;
