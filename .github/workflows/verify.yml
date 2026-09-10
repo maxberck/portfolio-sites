@@ -95,9 +95,11 @@ jobs:
           grep -q 'href="/categories/tatoueur"' /tmp/home.html
           grep -q 'data-preview="real"' /tmp/home.html
           grep -q 'restaurant-04-home.webp' /tmp/home.html
+          grep -q 'restaurant-01-home.webp' /tmp/home.html
           ! grep -qi '<iframe' /tmp/home.html
 
           test -s public/previews/restaurant-04-home.webp
+          test -s public/previews/restaurant-01-home.webp
           test -s /tmp/robots.txt
           test -s /tmp/sitemap.xml
 
@@ -133,6 +135,7 @@ jobs:
           grep -q 'La Maison' /tmp/silex-maison.html
           grep -q 'Galerie' /tmp/silex-gallery.html
           grep -q 'Adresse de démonstration' /tmp/silex-contact.html
+          grep -q 'href="/sites/restaurant-01"' /tmp/restaurant.html
 
           grep -q 'data-silex-hero="full-bleed"' /tmp/silex-home.html
           grep -q 'data-silex-chapter="manifesto"' /tmp/silex-home.html
@@ -146,5 +149,5 @@ jobs:
           real_preview_count=$(grep -oE '<div[^>]*data-preview="real"[^>]*>' /tmp/home.html | wc -l | tr -d ' ')
           echo "Available demos: $available_count"
           echo "Real previews: $real_preview_count"
-          test "$available_count" -eq 1
-          test "$real_preview_count" -eq 1
+          test "$available_count" -eq 2
+          test "$real_preview_count" -eq 2
