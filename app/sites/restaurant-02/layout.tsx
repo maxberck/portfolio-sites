@@ -7,6 +7,7 @@ import { PortfolioReturnLink } from "@/src/templates/restaurant-02/components/Po
 import { district88ThemeStyle } from "@/src/templates/restaurant-02/lib/theme";
 import { district88Site } from "@/src/templates/restaurant-02/src/data/site";
 import "@/src/templates/restaurant-02/styles/district88.css";
+import "@/src/templates/restaurant-02/styles/district88-gallery-fixes.css";
 
 const d88Display = Barlow_Condensed({
   subsets: ["latin"],
