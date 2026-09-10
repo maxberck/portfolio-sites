@@ -117,7 +117,7 @@ export const portfolioSites: PortfolioSite[] = [
     direction: "Japonais / minimaliste",
     summary: "Un restaurant japonais contemporain fondé sur le vide, la précision, les lignes fines et une palette ivoire, charbon et rouge laqué.",
     href: "/sites/restaurant-04",
-    status: "planned",
+    status: "available",
   },
   {
     id: "coiffure-01",
