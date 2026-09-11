@@ -107,4 +107,6 @@ jobs:
           fi
 
           git commit -m "feat: update ${SITE_ID} portfolio preview"
+          git fetch origin "$GITHUB_REF_NAME"
+          git rebase "origin/$GITHUB_REF_NAME"
           git push origin "HEAD:${GITHUB_REF_NAME}"
