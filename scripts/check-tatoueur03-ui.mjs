@@ -20,7 +20,7 @@ const overlapPairs = [
   [".lucky-flash-sheet h2", ".lucky-flash-sheet__note", "flash title/note"],
   [".lucky-artist-section h2", ".lucky-artist-section__bio", "artist name/bio"],
   [".lucky-story-panel h2", ".lucky-story-panel__copy", "story title/copy"],
-  [".lucky-shop-board h2", ".lucky-shop-board__copy", "visit heading/copy"],
+  [".lucky-shop-board__copy", ".lucky-shop-board__hours", "visit copy/hours"],
 ];
 
 const displaySelectors = [
