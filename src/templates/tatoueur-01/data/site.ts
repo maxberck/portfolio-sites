@@ -16,7 +16,7 @@ export const tattooWorks: TattooWork[] = [
     style: "Blackwork",
     artist: "Mara Voss",
     caption: "Dense botanical blackwork built around the shoulder line with deliberate negative space.",
-    image: { src: "https://images.unsplash.com/photo-1590246814883-57c511941f43?auto=format&fit=crop&w=1200&q=85", alt: "Tattoo detail in deep black ink on an arm", width: 1200, height: 1500 },
+    image: { src: "https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?auto=format&fit=crop&w=1200&q=85", alt: "Tattoo detail in deep black ink on an arm", width: 1200, height: 1500 },
     secondaryImage: { src: "https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?auto=format&fit=crop&w=1000&q=85", alt: "Close view of a black ink tattoo session", width: 1000, height: 1200 },
   },
   {
@@ -88,7 +88,7 @@ export const tattooArtists: TattooArtist[] = [
     name: "Niko Vale",
     specialty: "Lettering · abstract marks",
     bio: "Niko combines custom lettering with rough gestural marks, treating each placement as a one-off composition rather than a repeatable flash.",
-    portrait: { src: "https://images.unsplash.com/photo-1598371839873-8c5fd12c6b1c?auto=format&fit=crop&w=1000&q=85", alt: "Portrait of a tattoo artist in a monochrome studio setting", width: 1000, height: 1250 },
+    portrait: { src: "https://images.unsplash.com/photo-1605497788044-5a32c7078486?auto=format&fit=crop&w=1000&q=85", alt: "Portrait of a tattoo artist in a monochrome studio setting", width: 1000, height: 1250 },
     workIds: ["vow", "afterimage"],
   },
 ];
