@@ -3,7 +3,7 @@ import type { PortfolioSite } from "@/src/portfolio/types";
 
 type CatalogueGridProps = {
   sites: PortfolioSite[];
-  variant?: "showcase" | "category";
+  variant?: "showcase" | "category" | "templates";
 };
 
 const showcasePlacements: SiteCardPlacement[] = ["anchor", "tall", "compact", "wide"];
@@ -15,7 +15,7 @@ export function CatalogueGrid({ sites, variant = "category" }: CatalogueGridProp
   return (
     <ul className={`catalogue-grid catalogue-grid--${variant}`}>
       {sites.map((site, index) => {
-        const placement = placements[index % placements.length];
+        const placement = variant === "templates" ? "standard" : placements[index % placements.length];
 
         return (
           <li
