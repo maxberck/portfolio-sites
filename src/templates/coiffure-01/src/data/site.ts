@@ -24,7 +24,7 @@ export const maisonEliseSite = {
     beige: "#D7C3B6",
     burgundy: "#6A2F3C",
     white: "#FCFAF7",
-    muted: "#7B716C",
+    muted: "#756A64",
   },
   navigation: [
     { label: "Accueil", href: "/sites/coiffure-01" },
