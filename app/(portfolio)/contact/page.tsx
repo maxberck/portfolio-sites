@@ -22,10 +22,6 @@ export default function ContactPage() {
             </div>
             <p className="category-hero__description">
               Pour adapter un template, partir d&apos;une direction existante ou créer une vitrine différente pour votre activité.
-              <br />
-              <a className="portfolio-text-link portfolio-contact__link" href="mailto:maxence@ipn.be">
-                Me contacter
-              </a>
             </p>
           </div>
         </section>
