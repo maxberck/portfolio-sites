@@ -24,9 +24,20 @@ const overlapPairs = [
   [".ritual-visit-grid h2", ".ritual-visit-grid p:not(.ritual-kicker)", "visit title/copy"],
 ];
 
-function intersects(a, b) {
-  return a.left < b.right - 1 && a.right > b.left + 1 && a.top < b.bottom - 1 && a.bottom > b.top + 1;
-}
+const displaySelectors = [
+  ".ritual-opening__title",
+  ".ritual-work-spread__copy h2",
+  ".ritual-artist-break__copy h2",
+  ".ritual-statement h2",
+  ".ritual-visit-poster h2",
+  ".ritual-page-intro h1",
+  ".ritual-index-item__copy h2",
+  ".ritual-artist-poster h2",
+  ".ritual-studio-manifesto h2",
+  ".ritual-process h2",
+  ".ritual-care h2",
+  ".ritual-visit-grid h2",
+];
 
 const browser = await chromium.launch({ headless: true });
 const failures = [];
@@ -48,7 +59,7 @@ try {
       });
       await page.waitForTimeout(300);
 
-      const result = await page.evaluate((pairs) => {
+      const result = await page.evaluate(({ pairs, headings }) => {
         const brokenImages = [...document.images]
           .filter((img) => img.complete && img.naturalWidth === 0)
           .map((img) => ({ alt: img.alt, src: img.currentSrc || img.src }));
@@ -64,22 +75,29 @@ try {
             const a = first[index].getBoundingClientRect();
             const b = second[index].getBoundingClientRect();
             const hit = a.left < b.right - 1 && a.right > b.left + 1 && a.top < b.bottom - 1 && a.bottom > b.top + 1;
-            if (hit) overlaps.push({ label, index, first: { x: a.x, y: a.y, width: a.width, height: a.height }, second: { x: b.x, y: b.y, width: b.width, height: b.height } });
+            if (hit) overlaps.push({ label, index });
           }
         }
 
-        return { brokenImages, overflow, overlaps };
-      }, overlapPairs);
+        const compressedHeadings = [];
+        for (const selector of headings) {
+          for (const element of document.querySelectorAll(selector)) {
+            const style = getComputedStyle(element);
+            const fontSize = Number.parseFloat(style.fontSize);
+            const lineHeight = Number.parseFloat(style.lineHeight);
+            if (Number.isFinite(fontSize) && Number.isFinite(lineHeight) && lineHeight / fontSize < 0.86) {
+              compressedHeadings.push({ selector, text: element.textContent?.trim().slice(0, 60), ratio: Number((lineHeight / fontSize).toFixed(2)) });
+            }
+          }
+        }
 
-      if (result.brokenImages.length) {
-        failures.push(`${viewport.name} ${route}: broken images ${JSON.stringify(result.brokenImages)}`);
-      }
-      if (result.overflow > 1) {
-        failures.push(`${viewport.name} ${route}: horizontal overflow ${result.overflow}px`);
-      }
-      if (result.overlaps.length) {
-        failures.push(`${viewport.name} ${route}: overlapping text ${JSON.stringify(result.overlaps)}`);
-      }
+        return { brokenImages, overflow, overlaps, compressedHeadings };
+      }, { pairs: overlapPairs, headings: displaySelectors });
+
+      if (result.brokenImages.length) failures.push(`${viewport.name} ${route}: broken images ${JSON.stringify(result.brokenImages)}`);
+      if (result.overflow > 1) failures.push(`${viewport.name} ${route}: horizontal overflow ${result.overflow}px`);
+      if (result.overlaps.length) failures.push(`${viewport.name} ${route}: overlapping text ${JSON.stringify(result.overlaps)}`);
+      if (result.compressedHeadings.length) failures.push(`${viewport.name} ${route}: compressed display type ${JSON.stringify(result.compressedHeadings)}`);
     }
 
     await page.close();
