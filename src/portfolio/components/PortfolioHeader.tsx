@@ -25,13 +25,8 @@ export function PortfolioHeader() {
           ))}
         </nav>
 
-        <a
-          className="portfolio-header__utility"
-          href="https://github.com/maxberck"
-          target="_blank"
-          rel="noreferrer"
-        >
-          GitHub ↗
+        <a className="portfolio-header__utility" href="mailto:maxence@ipn.be">
+          Me contacter
         </a>
 
         <details className="portfolio-header__mobile">
@@ -42,9 +37,7 @@ export function PortfolioHeader() {
                 {link.label}
               </Link>
             ))}
-            <a href="https://github.com/maxberck" target="_blank" rel="noreferrer">
-              GitHub ↗
-            </a>
+            <a href="mailto:maxence@ipn.be">Me contacter</a>
           </nav>
         </details>
       </div>
