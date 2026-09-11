@@ -1,0 +1,34 @@
+.ritual-opening__title {
+  line-height: .94;
+}
+
+.ritual-work-spread__copy h2,
+.ritual-artist-break__copy h2,
+.ritual-statement h2,
+.ritual-page-intro h1,
+.ritual-index-item__copy h2,
+.ritual-artist-poster h2,
+.ritual-studio-manifesto h2,
+.ritual-process h2,
+.ritual-care h2,
+.ritual-visit-grid h2 {
+  line-height: .9;
+}
+
+.ritual-visit-poster h2 {
+  line-height: .88;
+}
+
+@media (max-width: 760px) {
+  .ritual-opening__title {
+    line-height: .96;
+  }
+
+  .ritual-page-intro h1,
+  .ritual-artist-poster h2,
+  .ritual-studio-manifesto h2,
+  .ritual-care h2,
+  .ritual-visit-grid h2 {
+    line-height: .94;
+  }
+}
