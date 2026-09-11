@@ -1,7 +1,7 @@
 const base = process.env.BASE_URL ?? "http://127.0.0.1:3000";
 
 const pages = [
-  ["/sites/garage-01", "L’entretien sans décor."],
+  ["/sites/garage-01", "Entretien, diagnostic et réparation multimarque."],
   ["/sites/garage-01/services", "SERVICES"],
   ["/sites/garage-01/atelier", "L’ATELIER"],
   ["/sites/garage-01/realisations", "RÉALISATIONS"],
@@ -31,6 +31,10 @@ for (const href of [
   if (!home.includes(`href="${href}"`)) throw new Error(`home missing ${href}`);
 }
 
+for (const marker of ["BAIE 01", "Garage multimarque", "VOIR LES SERVICES"]) {
+  if (!home.includes(marker)) throw new Error(`home missing industrial marker ${marker}`);
+}
+
 const category = await (await fetch(`${base}/categories/garage`)).text();
 if (!category.includes('data-site-card="garage-01"')) throw new Error("garage category missing Atelier Noir card");
 
@@ -41,4 +45,4 @@ if (requireAvailable) {
   if (!fs.existsSync("public/previews/garage-01-home.webp")) throw new Error("Atelier Noir preview file missing");
 }
 
-console.log("Atelier Noir smoke contract passed.");
+console.log("Atelier Noir industrial smoke contract passed.");
