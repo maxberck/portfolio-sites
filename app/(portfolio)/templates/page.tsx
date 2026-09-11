@@ -2,15 +2,26 @@ import type { Metadata } from "next";
 
 import { PortfolioFooter } from "@/src/portfolio/components/PortfolioFooter";
 import { PortfolioHeader } from "@/src/portfolio/components/PortfolioHeader";
-import { TemplatesCatalogue } from "@/src/portfolio/components/TemplatesCatalogue";
+import { TemplatesCatalogue, type TemplateFilter } from "@/src/portfolio/components/TemplatesCatalogue";
 import { portfolioSites, siteCategories } from "@/src/portfolio/data/sites";
+import type { SiteCategory } from "@/src/portfolio/types";
 
 export const metadata: Metadata = {
   title: "Templates",
   description: "Tous les templates de sites vitrines du portfolio, classés par restaurant, garage, coiffure et tattoo.",
 };
 
-export default function TemplatesPage() {
+type TemplatesPageProps = {
+  searchParams: Promise<{ category?: string | string[] }>;
+};
+
+export default async function TemplatesPage({ searchParams }: TemplatesPageProps) {
+  const params = await searchParams;
+  const requested = Array.isArray(params.category) ? params.category[0] : params.category;
+  const initialCategory: TemplateFilter = siteCategories.some((category) => category.id === requested)
+    ? (requested as SiteCategory)
+    : "all";
+
   return (
     <>
       <PortfolioHeader />
@@ -38,7 +49,11 @@ export default function TemplatesPage() {
               <p>Des structures et directions différentes, regroupées ici pour comparer facilement.</p>
             </div>
 
-            <TemplatesCatalogue sites={portfolioSites} categories={siteCategories} />
+            <TemplatesCatalogue
+              sites={portfolioSites}
+              categories={siteCategories}
+              initialCategory={initialCategory}
+            />
           </div>
         </section>
       </main>
