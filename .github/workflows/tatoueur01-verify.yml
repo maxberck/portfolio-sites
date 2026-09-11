@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - 'feat/tatoueur-01-black-ritual'
+      - 'fix/tatoueur-01-layout-images'
   pull_request:
     branches:
       - main
@@ -41,3 +42,18 @@ jobs:
             sleep 1
           done
           node scripts/smoke-tatoueur01.mjs
+      - name: Install browser regression tooling
+        run: |
+          npm install --no-save playwright@latest
+          npx playwright install --with-deps chromium
+      - name: Check Black Ritual browser layout and images
+        shell: bash
+        run: |
+          npm run start -- -p 3000 > /tmp/tatoueur01-ui-next.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
+          for attempt in {1..30}; do
+            if curl -fsS http://127.0.0.1:3000/sites/tatoueur-01 > /dev/null; then break; fi
+            sleep 1
+          done
+          node scripts/check-tatoueur01-ui.mjs
