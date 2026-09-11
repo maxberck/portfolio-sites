@@ -16,8 +16,8 @@ export const carrosserie42Site = {
     title: "Redresser. Préparer. Peindre. Contrôler.",
     body: "Bosses, rayures, pare-chocs et éléments peints : l’intervention part de l’état réel de la pièce, puis suit une préparation propre jusqu’au contrôle de finition.",
     image: {
-      src: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=2200&q=88",
-      alt: "Carrosserie automobile vue de près dans un environnement d’atelier",
+      src: "https://images.unsplash.com/photo-1786489785778-a163f38b7c87?auto=format&fit=crop&w=2200&q=88",
+      alt: "Technicien ponçant un pare-chocs dans un atelier de carrosserie",
       width: 2200,
       height: 1467,
     },
@@ -76,20 +76,20 @@ export const carrosserie42Site = {
   ],
   images: {
     prep: {
-      src: "https://images.unsplash.com/photo-1487754180451-c456f719a1fc?auto=format&fit=crop&w=1800&q=86",
-      alt: "Technicien préparant une zone de carrosserie automobile",
+      src: "https://images.unsplash.com/photo-1632605185825-fd583793fa73?auto=format&fit=crop&w=1800&q=86",
+      alt: "Véhicule masqué dans une zone de préparation peinture",
       width: 1800,
       height: 1200,
     },
     detail: {
-      src: "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&w=1800&q=86",
-      alt: "Travail de précision sur un véhicule dans un atelier",
+      src: "https://images.unsplash.com/photo-1632605192331-085fa2082575?auto=format&fit=crop&w=1800&q=86",
+      alt: "Technicien travaillant la surface d’une carrosserie en atelier",
       width: 1800,
       height: 1200,
     },
     finish: {
-      src: "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1800&q=86",
-      alt: "Finition extérieure d’une carrosserie automobile",
+      src: "https://images.unsplash.com/photo-1632605170384-c3f4d89162a3?auto=format&fit=crop&w=1800&q=86",
+      alt: "Véhicule en cours de travail dans un atelier de carrosserie",
       width: 1800,
       height: 1200,
     },
