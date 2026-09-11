@@ -212,9 +212,16 @@ export const portfolioSites: PortfolioSite[] = [
     name: "Form Studio",
     category: "coiffure",
     direction: "Salon moderne / minimaliste",
-    summary: "Direction prévue : grille suisse noir et blanc, prestations très lisibles et composition strictement fonctionnelle.",
+    summary: "Grille suisse fonctionnelle — mise en page typographique, services en lignes, photographie architecturale et repères vert acide.",
     href: "/sites/coiffure-03",
-    status: "planned",
+    status: "available",
+    preview: {
+      src: "/previews/coiffure-03-home.webp",
+      alt: "Aperçu de la page d'accueil minimaliste du salon Form Studio",
+      width: 1440,
+      height: 1000,
+      focalPosition: "center top",
+    },
   },
   {
     id: "coiffure-04",
