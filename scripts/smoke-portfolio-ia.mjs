@@ -70,8 +70,16 @@ if (!contact.includes('data-contact-page="true"')) {
   throw new Error("Contact page hook is missing");
 }
 
-if (!contact.includes("GitHub")) {
-  throw new Error("Contact page should expose the existing GitHub contact path");
+if (!contact.includes('href="mailto:maxence@ipn.be"')) {
+  throw new Error("Contact page should expose the maxence@ipn.be mailto link");
+}
+
+if (!contact.includes("Me contacter")) {
+  throw new Error("Contact page should label the email CTA Me contacter");
+}
+
+if (contact.includes("GitHub")) {
+  throw new Error("Contact page should no longer expose GitHub as the contact path");
 }
 
 console.log("Portfolio IA smoke contract passed.");

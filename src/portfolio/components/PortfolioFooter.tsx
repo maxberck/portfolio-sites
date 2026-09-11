@@ -23,7 +23,7 @@ export function PortfolioFooter() {
         </nav>
 
         <div className="portfolio-footer__meta">
-          <a href="https://github.com/maxberck" target="_blank" rel="noreferrer">GitHub ↗</a>
+          <a href="mailto:maxence@ipn.be">Me contacter</a>
           <span>© {year}</span>
         </div>
       </div>

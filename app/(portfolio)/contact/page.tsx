@@ -25,32 +25,6 @@ export default function ContactPage() {
             </p>
           </div>
         </section>
-
-        <section className="portfolio-contact">
-          <div className="portfolio-container portfolio-contact__grid">
-            <div className="portfolio-contact__intro">
-              <p className="portfolio-label">UN PROJET ?</p>
-              <h2>Présentez-moi votre besoin.</h2>
-            </div>
-
-            <div className="portfolio-contact__details">
-              <p>
-                Le portfolio ne publie pas encore d&apos;adresse e-mail dédiée. Le point de contact public disponible pour le moment est GitHub.
-              </p>
-              <a
-                className="portfolio-text-link portfolio-contact__link"
-                href="https://github.com/maxberck"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Voir mon GitHub ↗
-              </a>
-              <p className="portfolio-contact__note">
-                Vous pouvez également garder le lien d&apos;un template qui vous plaît afin de préciser la direction souhaitée.
-              </p>
-            </div>
-          </div>
-        </section>
       </main>
 
       <PortfolioFooter />
