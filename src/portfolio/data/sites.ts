@@ -228,9 +228,16 @@ export const portfolioSites: PortfolioSite[] = [
     name: "Chromatic",
     category: "coiffure",
     direction: "Salon artistique / coloré",
-    summary: "Direction prévue : aplats chromatiques forts, portraits découpés et collage éditorial de studio créatif.",
+    summary: "Color Lab éditorial — aplats chromatiques, portraits de couleur superposés, familles de teintes en compositions variables et work présenté comme un contact sheet créatif.",
     href: "/sites/coiffure-04",
-    status: "planned",
+    status: "available",
+    preview: {
+      src: "/previews/coiffure-04-home.webp",
+      alt: "Aperçu de la page d'accueil Color Lab éditoriale du studio Chromatic",
+      width: 1440,
+      height: 1000,
+      focalPosition: "center top",
+    },
   },
   {
     id: "tatoueur-01",
