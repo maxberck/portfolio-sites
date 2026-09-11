@@ -1,25 +1,24 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import { CatalogueGrid } from "@/src/portfolio/components/CatalogueGrid";
 import type { PortfolioSite, SiteCategory, SiteCategoryDefinition } from "@/src/portfolio/types";
 
-type TemplateFilter = "all" | SiteCategory;
+export type TemplateFilter = "all" | SiteCategory;
 
 type TemplatesCatalogueProps = {
   sites: PortfolioSite[];
   categories: SiteCategoryDefinition[];
+  initialCategory?: TemplateFilter;
 };
 
-export function TemplatesCatalogue({ sites, categories }: TemplatesCatalogueProps) {
-  const [active, setActive] = useState<TemplateFilter>("all");
-
-  useEffect(() => {
-    const value = new URLSearchParams(window.location.search).get("category");
-    const isCategory = categories.some((category) => category.id === value);
-    if (isCategory && value) setActive(value as SiteCategory);
-  }, [categories]);
+export function TemplatesCatalogue({
+  sites,
+  categories,
+  initialCategory = "all",
+}: TemplatesCatalogueProps) {
+  const [active, setActive] = useState<TemplateFilter>(initialCategory);
 
   const selectCategory = (category: TemplateFilter) => {
     setActive(category);
