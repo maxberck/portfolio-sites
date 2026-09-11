@@ -1,0 +1,63 @@
+name: Verify portfolio IA
+
+on:
+  push:
+    branches:
+      - 'feat/portfolio-home-templates-contact'
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Build
+        run: npm run build
+
+      - name: Smoke portfolio IA
+        shell: bash
+        run: |
+          npm run start -- -p 3000 > /tmp/portfolio-ia-next.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
+          for attempt in {1..30}; do
+            if curl -fsS http://127.0.0.1:3000/ > /dev/null; then break; fi
+            sleep 1
+          done
+          node scripts/smoke-portfolio-ia.mjs
+
+      - name: Install browser regression tooling
+        run: |
+          npm install --no-save playwright@latest
+          npx playwright install --with-deps chromium
+
+      - name: Check portfolio IA browser behavior
+        shell: bash
+        run: |
+          npm run start -- -p 3000 > /tmp/portfolio-ia-ui-next.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
+          for attempt in {1..30}; do
+            if curl -fsS http://127.0.0.1:3000/ > /dev/null; then break; fi
+            sleep 1
+          done
+          node scripts/check-portfolio-ia-ui.mjs

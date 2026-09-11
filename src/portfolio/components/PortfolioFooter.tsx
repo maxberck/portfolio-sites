@@ -1,6 +1,10 @@
 import Link from "next/link";
 
-import { siteCategories } from "@/src/portfolio/data/sites";
+const footerLinks = [
+  { href: "/", label: "Accueil" },
+  { href: "/templates", label: "Templates" },
+  { href: "/contact", label: "Contact" },
+] as const;
 
 export function PortfolioFooter() {
   const year = new Date().getFullYear();
@@ -11,9 +15,9 @@ export function PortfolioFooter() {
         <p className="portfolio-footer__title">Sites vitrines</p>
 
         <nav className="portfolio-footer__links" aria-label="Liens de pied de page">
-          {siteCategories.map((category) => (
-            <Link key={category.id} href={category.href}>
-              {category.id === "tatoueur" ? "Tattoo" : category.label}
+          {footerLinks.map((link) => (
+            <Link key={link.href} href={link.href}>
+              {link.label}
             </Link>
           ))}
         </nav>

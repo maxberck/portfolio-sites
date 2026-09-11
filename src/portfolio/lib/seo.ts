@@ -1,5 +1,7 @@
 export const portfolioIndexablePaths = [
   "/",
+  "/templates",
+  "/contact",
   "/categories/garage",
   "/categories/restaurant",
   "/categories/coiffure",
