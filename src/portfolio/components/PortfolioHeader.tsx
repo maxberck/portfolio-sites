@@ -1,10 +1,10 @@
 import Link from "next/link";
 
-import { siteCategories } from "@/src/portfolio/data/sites";
-
-function categoryLabel(id: string, label: string) {
-  return id === "tatoueur" ? "Tattoo" : label;
-}
+const primaryLinks = [
+  { href: "/", label: "Accueil" },
+  { href: "/templates", label: "Templates" },
+  { href: "/contact", label: "Contact" },
+] as const;
 
 export function PortfolioHeader() {
   return (
@@ -17,11 +17,10 @@ export function PortfolioHeader() {
           <span className="portfolio-brand__name">Sites vitrines</span>
         </Link>
 
-        <nav className="portfolio-header__nav" aria-label="Catégories du portfolio">
-          <Link href="/">Tous</Link>
-          {siteCategories.map((category) => (
-            <Link key={category.id} href={category.href}>
-              {categoryLabel(category.id, category.label)}
+        <nav className="portfolio-header__nav" aria-label="Navigation principale du portfolio">
+          {primaryLinks.map((link) => (
+            <Link key={link.href} href={link.href}>
+              {link.label}
             </Link>
           ))}
         </nav>
@@ -37,11 +36,10 @@ export function PortfolioHeader() {
 
         <details className="portfolio-header__mobile">
           <summary>Menu</summary>
-          <nav className="portfolio-header__mobile-panel" aria-label="Catégories du portfolio sur mobile">
-            <Link href="/">Tous</Link>
-            {siteCategories.map((category) => (
-              <Link key={category.id} href={category.href}>
-                {categoryLabel(category.id, category.label)}
+          <nav className="portfolio-header__mobile-panel" aria-label="Navigation principale du portfolio sur mobile">
+            {primaryLinks.map((link) => (
+              <Link key={link.href} href={link.href}>
+                {link.label}
               </Link>
             ))}
             <a href="https://github.com/maxberck" target="_blank" rel="noreferrer">
