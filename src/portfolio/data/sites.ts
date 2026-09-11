@@ -196,9 +196,16 @@ export const portfolioSites: PortfolioSite[] = [
     name: "District Cut",
     category: "coiffure",
     direction: "Barber urbain / sombre",
-    summary: "Direction prévue : fond sombre, détails acier, portraits très contrastés et typographie condensée de barber shop urbain.",
+    summary: "Brutal street barber — rail latéral, noir charbon, acier, rouge signalétique, portraits au flash et prestations en menu de barber shop.",
     href: "/sites/coiffure-02",
-    status: "planned",
+    status: "available",
+    preview: {
+      src: "/previews/coiffure-02-home.webp",
+      alt: "Aperçu de la page d'accueil sombre et urbaine du barber shop District Cut",
+      width: 1440,
+      height: 1000,
+      focalPosition: "center top",
+    },
   },
   {
     id: "coiffure-03",
