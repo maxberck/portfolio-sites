@@ -34,7 +34,7 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Smoke test routes and catalogue counts
+      - name: Smoke portfolio routes and compatibility
         shell: bash
         run: |
           npm run start -- -p 3000 > /tmp/portfolio-next.log 2>&1 &
@@ -43,7 +43,7 @@ jobs:
 
           ready=0
           for attempt in {1..30}; do
-            if curl -fsS http://127.0.0.1:3000/ > /tmp/home.html; then
+            if curl -fsS http://127.0.0.1:3000/ > /dev/null; then
               ready=1
               break
             fi
@@ -54,6 +54,8 @@ jobs:
             cat /tmp/portfolio-next.log
             exit 1
           fi
+
+          node scripts/smoke-portfolio-ia.mjs
 
           curl -fsS http://127.0.0.1:3000/categories/garage > /tmp/garage.html
           curl -fsS http://127.0.0.1:3000/categories/restaurant > /tmp/restaurant.html
@@ -66,113 +68,23 @@ jobs:
             grep -o 'data-site-card="[^"]*"' "$1" | sort -u | wc -l | tr -d ' '
           }
 
-          home_count=$(count_cards /tmp/home.html)
-          garage_count=$(count_cards /tmp/garage.html)
-          restaurant_count=$(count_cards /tmp/restaurant.html)
-          coiffure_count=$(count_cards /tmp/coiffure.html)
-          tatoueur_count=$(count_cards /tmp/tatoueur.html)
+          test "$(count_cards /tmp/garage.html)" -eq 4
+          test "$(count_cards /tmp/restaurant.html)" -eq 4
+          test "$(count_cards /tmp/coiffure.html)" -eq 4
+          test "$(count_cards /tmp/tatoueur.html)" -eq 4
 
-          echo "Homepage cards: $home_count"
-          echo "Garage cards: $garage_count"
-          echo "Restaurant cards: $restaurant_count"
-          echo "Coiffure cards: $coiffure_count"
-          echo "Tatoueur cards: $tatoueur_count"
-
-          test "$home_count" -eq 4
-          test "$garage_count" -eq 4
-          test "$restaurant_count" -eq 4
-          test "$coiffure_count" -eq 4
-          test "$tatoueur_count" -eq 4
-
-          grep -q 'data-portfolio-design="technical-minimalist"' /tmp/home.html
-          grep -q 'data-home-selection="curated"' /tmp/home.html
-          grep -q 'SITES VITRINES' /tmp/home.html
-          grep -q 'Sélection' /tmp/home.html
-          ! grep -q '16 projets. 4 catégories.' /tmp/home.html
-          ! grep -q '/ 16 disponibles' /tmp/home.html
-          ! grep -q 'category-directory__index' /tmp/home.html
-          ! grep -q 'site-card__planned-top' /tmp/home.html
-          ! grep -q '04 / 16' /tmp/restaurant.html
-          ! grep -q 'Créer mon site' /tmp/home.html
-          ! grep -q 'Faire créer mon site' /tmp/home.html
-          ! grep -q 'Comment ça marche' /tmp/home.html
-          ! grep -q 'Adapté à votre activité' /tmp/home.html
-
-          grep -q 'href="/categories/garage"' /tmp/home.html
-          grep -q 'href="/categories/restaurant"' /tmp/home.html
-          grep -q 'href="/categories/coiffure"' /tmp/home.html
-          grep -q 'href="/categories/tatoueur"' /tmp/home.html
-
-          grep -q 'data-site-card="restaurant-04"' /tmp/home.html
-          grep -q 'data-site-card="restaurant-01"' /tmp/home.html
-          grep -q 'data-site-card="garage-01"' /tmp/home.html
-          grep -q 'data-site-card="coiffure-02"' /tmp/home.html
-          ! grep -q 'data-site-card="restaurant-02"' /tmp/home.html
-
-          grep -q 'target="_blank"' /tmp/home.html
-          grep -q 'rel="noreferrer"' /tmp/home.html
-          grep -q 'Ouvrir la démo' /tmp/home.html
-          grep -q 'restaurant-04-home.webp' /tmp/home.html
-          grep -q 'restaurant-01-home.webp' /tmp/home.html
-          grep -q 'garage-01-home.webp' /tmp/home.html
-          ! grep -qi '<iframe' /tmp/home.html
-
-          test -s public/previews/restaurant-04-home.webp
-          test -s public/previews/restaurant-01-home.webp
-          test -s public/previews/garage-01-home.webp
+          grep -q 'data-portfolio-design="technical-minimalist"' <(curl -fsS http://127.0.0.1:3000/)
           test -s /tmp/robots.txt
           test -s /tmp/sitemap.xml
 
-          grep -qi 'réparation' /tmp/garage.html
-          grep -qi 'entretien' /tmp/garage.html
-          grep -qi 'diagnostic' /tmp/garage.html
-          grep -qi 'dépannage' /tmp/garage.html
-          ! grep -qi 'création de voiture' /tmp/garage.html
-          ! grep -qi 'fabrication de voiture' /tmp/garage.html
-
-          for category_page in /tmp/garage.html /tmp/restaurant.html /tmp/coiffure.html /tmp/tatoueur.html; do
-            ! grep -q 'Créer mon site' "$category_page"
-            ! grep -q 'adaptée à votre activité' "$category_page"
-          done
-
           curl -fsS http://127.0.0.1:3000/sites/restaurant-04 > /tmp/kuro-home.html
-          curl -fsS http://127.0.0.1:3000/sites/restaurant-04/menu > /tmp/kuro-menu.html
-          curl -fsS http://127.0.0.1:3000/sites/restaurant-04/restaurant > /tmp/kuro-restaurant.html
-          curl -fsS http://127.0.0.1:3000/sites/restaurant-04/galerie > /tmp/kuro-gallery.html
-          curl -fsS http://127.0.0.1:3000/sites/restaurant-04/contact > /tmp/kuro-contact.html
-
-          for page in /tmp/kuro-home.html /tmp/kuro-menu.html /tmp/kuro-restaurant.html /tmp/kuro-gallery.html /tmp/kuro-contact.html; do
-            grep -q 'name="robots" content="noindex, follow"' "$page"
-          done
-
-          grep -q 'Précision. Saison. Silence.' /tmp/kuro-home.html
-          grep -q 'Omakase' /tmp/kuro-menu.html
-          grep -q 'La table' /tmp/kuro-restaurant.html
-          grep -q 'Galerie' /tmp/kuro-gallery.html
-          grep -q 'Adresse de démonstration' /tmp/kuro-contact.html
-
           curl -fsS http://127.0.0.1:3000/sites/restaurant-01 > /tmp/silex-home.html
-          curl -fsS http://127.0.0.1:3000/sites/restaurant-01/menu > /tmp/silex-menu.html
-          curl -fsS http://127.0.0.1:3000/sites/restaurant-01/maison > /tmp/silex-maison.html
-          curl -fsS http://127.0.0.1:3000/sites/restaurant-01/galerie > /tmp/silex-gallery.html
-          curl -fsS http://127.0.0.1:3000/sites/restaurant-01/contact > /tmp/silex-contact.html
-
-          for page in /tmp/silex-home.html /tmp/silex-menu.html /tmp/silex-maison.html /tmp/silex-gallery.html /tmp/silex-contact.html; do
-            grep -q 'name="robots" content="noindex, follow"' "$page"
-          done
-
+          grep -q 'name="robots" content="noindex, follow"' /tmp/kuro-home.html
+          grep -q 'name="robots" content="noindex, follow"' /tmp/silex-home.html
+          grep -q 'Précision. Saison. Silence.' /tmp/kuro-home.html
           grep -q 'Une cuisine de saison, précise et sensible.' /tmp/silex-home.html
-          grep -q 'Menu dégustation' /tmp/silex-menu.html
-          grep -q 'La Maison' /tmp/silex-maison.html
-          grep -q 'Galerie' /tmp/silex-gallery.html
-          grep -q 'Adresse de démonstration' /tmp/silex-contact.html
 
-          available_count=$(grep -oE '<article[^>]*site-card--available[^>]*>' /tmp/home.html | wc -l | tr -d ' ')
-          real_preview_count=$(grep -oE '<div[^>]*data-preview="real"[^>]*>' /tmp/home.html | wc -l | tr -d ' ')
-          new_tab_count=$(grep -oE '<a[^>]*target="_blank"[^>]*data-demo-link="true"[^>]*>|<a[^>]*data-demo-link="true"[^>]*target="_blank"[^>]*>' /tmp/home.html | wc -l | tr -d ' ')
-          echo "Available selected demos: $available_count"
-          echo "Real selected previews: $real_preview_count"
-          echo "New-tab selected demo links: $new_tab_count"
-          test "$available_count" -eq 4
-          test "$real_preview_count" -eq 4
-          test "$new_tab_count" -eq 4
+          test -s public/previews/restaurant-04-home.webp
+          test -s public/previews/garage-01-home.webp
+          test -s public/previews/coiffure-01-home.webp
+          test -s public/previews/tatoueur-01-home.webp
