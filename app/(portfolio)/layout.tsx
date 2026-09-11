@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import { JetBrains_Mono, Space_Grotesk } from "next/font/google";
 
 import "@/src/portfolio/styles/portfolio.css";
+import "@/src/portfolio/styles/portfolio-ia.css";
 
 const portfolioDisplay = Space_Grotesk({
   subsets: ["latin"],
