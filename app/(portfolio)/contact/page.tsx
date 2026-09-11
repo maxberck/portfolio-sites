@@ -21,7 +21,7 @@ export default function ContactPage() {
               <h1 id="contact-title">PARLONS DU SITE.</h1>
             </div>
             <p className="category-hero__description">
-              Pour adapter un template, partir d'une direction existante ou créer une vitrine différente pour votre activité.
+              Pour adapter un template, partir d&apos;une direction existante ou créer une vitrine différente pour votre activité.
             </p>
           </div>
         </section>
@@ -35,7 +35,7 @@ export default function ContactPage() {
 
             <div className="portfolio-contact__details">
               <p>
-                Le portfolio ne publie pas encore d'adresse e-mail dédiée. Le point de contact public disponible pour le moment est GitHub.
+                Le portfolio ne publie pas encore d&apos;adresse e-mail dédiée. Le point de contact public disponible pour le moment est GitHub.
               </p>
               <a
                 className="portfolio-text-link portfolio-contact__link"
@@ -46,7 +46,7 @@ export default function ContactPage() {
                 Voir mon GitHub ↗
               </a>
               <p className="portfolio-contact__note">
-                Vous pouvez également garder le lien d'un template qui vous plaît afin de préciser la direction souhaitée.
+                Vous pouvez également garder le lien d&apos;un template qui vous plaît afin de préciser la direction souhaitée.
               </p>
             </div>
           </div>
