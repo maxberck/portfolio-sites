@@ -1,0 +1,102 @@
+export const carrosserie42Site = {
+  business: {
+    name: "Carrosserie 42",
+    descriptor: "Carrosserie & peinture",
+    mark: "C42",
+  },
+  navigation: [
+    { label: "Accueil", href: "/sites/garage-04" },
+    { label: "Carrosserie", href: "/sites/garage-04/carrosserie" },
+    { label: "Peinture", href: "/sites/garage-04/peinture" },
+    { label: "Réalisations", href: "/sites/garage-04/realisations" },
+    { label: "Contact", href: "/sites/garage-04/contact" },
+  ],
+  hero: {
+    eyebrow: "Carrosserie & peinture · Bruxelles",
+    title: "Redresser. Préparer. Peindre. Contrôler.",
+    body: "Bosses, rayures, pare-chocs et éléments peints : l’intervention part de l’état réel de la pièce, puis suit une préparation propre jusqu’au contrôle de finition.",
+    image: {
+      src: "https://images.unsplash.com/photo-1786489785778-a163f38b7c87?auto=format&fit=crop&w=2200&q=88",
+      alt: "Technicien ponçant un pare-chocs dans un atelier de carrosserie",
+      width: 2200,
+      height: 1467,
+    },
+  },
+  process: [
+    { code: "01", label: "Contrôler", text: "Identifier l’impact, l’état du support et les zones réellement concernées." },
+    { code: "02", label: "Redresser", text: "Réparer ou remettre en forme l’élément quand son état le permet." },
+    { code: "03", label: "Préparer", text: "Ponçage, reprise de surface, masquage et apprêt avant mise en peinture." },
+    { code: "04", label: "Peindre", text: "Application, finition puis inspection visuelle avant restitution de l’élément." },
+  ],
+  services: [
+    { code: "C42 / 01", title: "Bosses & petits chocs", text: "Remise en forme ou réparation localisée selon l’accès, la déformation et l’état du panneau." },
+    { code: "C42 / 02", title: "Rayures & éléments peints", text: "Préparation de la zone atteinte puis reprise adaptée à l’étendue réelle du défaut." },
+    { code: "C42 / 03", title: "Pare-chocs", text: "Contrôle des fixations, de la déformation et de la surface avant réparation ou remplacement de l’élément." },
+    { code: "C42 / 04", title: "Tôlerie légère", text: "Travail sur ailes, portes et panneaux présentant des déformations réparables en atelier." },
+    { code: "C42 / 05", title: "Préparation peinture", text: "Ponçage, reprise de surface, apprêt et masquage pour créer une base cohérente avant finition." },
+    { code: "C42 / 06", title: "Raccord & remise en teinte", text: "Traitement de la zone peinte avec contrôle visuel final, sans promettre un résultat standardisé hors inspection réelle." },
+  ],
+  bodyworkTypes: [
+    { code: "01", title: "Bosse", text: "Déformation localisée d’un panneau ou d’une porte. La méthode dépend de l’accès derrière la tôle et de l’état de la peinture." },
+    { code: "02", title: "Rayure", text: "Défaut de surface ou atteinte plus profonde. Le contrôle détermine si une reprise locale suffit ou si la zone doit être préparée plus largement." },
+    { code: "03", title: "Pare-chocs", text: "Marque, fissure ou déformation d’un élément plastique. Fixations, structure et surface sont vérifiées avant décision." },
+    { code: "04", title: "Panneau déformé", text: "Aile, porte ou élément latéral marqué par un choc. On évalue la possibilité de redressage avant toute préparation peinture." },
+  ],
+  bodyworkSequence: [
+    { code: "01", label: "Contrôler", text: "Délimiter le dommage et vérifier l’état du support." },
+    { code: "02", label: "Démonter", text: "Retirer les éléments nécessaires uniquement lorsque l’accès ou la réparation l’exige." },
+    { code: "03", label: "Redresser", text: "Reformer ou réparer la zone sans multiplier les interventions inutiles." },
+    { code: "04", label: "Préparer", text: "Stabiliser la surface avant apprêt et peinture." },
+    { code: "05", label: "Recontrôler", text: "Vérifier alignements, surface et zone de finition avant l’étape suivante." },
+  ],
+  paintSteps: [
+    { code: "P01", title: "Préparation", text: "Nettoyage, ponçage et correction de surface pour obtenir un support régulier." },
+    { code: "P02", title: "Masquage", text: "Protection des zones qui ne doivent pas recevoir de produit ou de brouillard de peinture." },
+    { code: "P03", title: "Apprêt", text: "Création d’une base de travail adaptée à la réparation et à la finition choisie." },
+    { code: "P04", title: "Peinture", text: "Application de la teinte et des couches de finition selon le travail réellement nécessaire." },
+    { code: "P05", title: "Finition", text: "Contrôle de surface, corrections limitées si besoin et nettoyage de la zone." },
+    { code: "P06", title: "Inspection", text: "Vérification visuelle finale de la pièce, des raccords et des protections retirées." },
+  ],
+  records: [
+    { code: "DOSSIER 01", title: "Pare-chocs", vehicle: "Citadine · exemple illustratif", issue: "Marque et déformation localisée", action: "Contrôle des fixations, remise en forme et préparation de surface", control: "Alignement et finition" },
+    { code: "DOSSIER 02", title: "Aile avant", vehicle: "Berline · exemple illustratif", issue: "Bosse légère sur panneau", action: "Redressage, reprise de surface et mise en peinture", control: "Surface et raccord visuel" },
+    { code: "DOSSIER 03", title: "Rayure latérale", vehicle: "Break · exemple illustratif", issue: "Rayure profonde sur élément peint", action: "Préparation élargie et reprise de finition", control: "Aspect de surface" },
+    { code: "DOSSIER 04", title: "Petit choc portière", vehicle: "Compacte · exemple illustratif", issue: "Déformation et éclat de peinture", action: "Réparation de la zone et préparation avant peinture", control: "Jeux, surface et finition" },
+  ],
+  contact: {
+    phone: "+32 2 000 00 42",
+    email: "atelier@carrosserie42.example",
+    location: "Bruxelles Ouest · adresse fictive",
+    note: "Coordonnées fictives utilisées uniquement pour cette démonstration de portfolio.",
+  },
+  hours: [
+    { days: "Lundi — vendredi", hours: "08:00 — 18:00" },
+    { days: "Samedi", hours: "09:00 — 13:00" },
+    { days: "Dimanche", hours: "Fermé" },
+  ],
+  images: {
+    prep: {
+      src: "https://images.unsplash.com/photo-1632605185825-fd583793fa73?auto=format&fit=crop&w=1800&q=86",
+      alt: "Véhicule masqué dans une zone de préparation peinture",
+      width: 1800,
+      height: 1200,
+    },
+    detail: {
+      src: "https://images.unsplash.com/photo-1632605192331-085fa2082575?auto=format&fit=crop&w=1800&q=86",
+      alt: "Technicien travaillant la surface d’une carrosserie en atelier",
+      width: 1800,
+      height: 1200,
+    },
+    finish: {
+      src: "https://images.unsplash.com/photo-1632605170384-c3f4d89162a3?auto=format&fit=crop&w=1800&q=86",
+      alt: "Véhicule en cours de travail dans un atelier de carrosserie",
+      width: 1800,
+      height: 1200,
+    },
+  },
+  demoDisclosure: "Carrosserie 42 est un atelier fictif créé comme démonstration de portfolio. Coordonnées, dossiers et interventions présentés sont illustratifs.",
+  seo: {
+    title: "Carrosserie 42 — Carrosserie & peinture à Bruxelles",
+    description: "Démonstration d’un site vitrine de carrosserie : bosses, rayures, pare-chocs, préparation peinture et remise en état.",
+  },
+} as const;
