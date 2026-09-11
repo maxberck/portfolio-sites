@@ -17,19 +17,23 @@ const viewports = [
 const overlapPairs = [
   [".line-opening__title", ".line-opening__statement", "home title/statement"],
   [".line-page-intro h1", ".line-page-intro__lede", "page title/lede"],
-  [".line-plate h2", ".line-plate__caption", "work plate title/caption"],
+  [".line-plate h2", ".line-plate__caption > p", "work plate title/caption"],
+  [".line-catalogue-item h2", ".line-catalogue-item__copy > p:not(.line-kicker)", "catalogue title/copy"],
   [".line-artist-dossier h2", ".line-artist-dossier__bio", "artist name/bio"],
   [".line-studio-statement h2", ".line-studio-statement__copy", "studio statement/copy"],
-  [".line-visit-panel h2", ".line-visit-panel__copy", "visit heading/copy"],
+  [".line-visit-panel h2", ".line-visit-panel__copy > p:not(.line-kicker)", "visit heading/copy"],
 ];
 
 const displaySelectors = [
   ".line-opening__title",
   ".line-page-intro h1",
   ".line-plate h2",
+  ".line-catalogue-item h2",
   ".line-artist-dossier h2",
   ".line-studio-statement h2",
+  ".line-studio-practical h2",
   ".line-visit-panel h2",
+  ".line-visit-details h2",
 ];
 
 const browser = await chromium.launch({ headless: true });
