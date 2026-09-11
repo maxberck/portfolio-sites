@@ -12,11 +12,13 @@ type ColorFamilyPanelProps = {
 };
 
 export function ColorFamilyPanel({ family, variant, expanded = false }: ColorFamilyPanelProps) {
+  const label = `${family.code} ${family.name}`;
+
   return (
     <section className={`chrom-family chrom-family-${family.slug} chrom-family-${variant}`} aria-labelledby={`family-${family.slug}`}>
       <div className="chrom-family-label">
         <span>{family.code}</span>
-        <h2 id={`family-${family.slug}`}>{family.code} {family.name}</h2>
+        <h2 id={`family-${family.slug}`}>{label}</h2>
       </div>
       <ChromaticImage image={family.image} className="chrom-family-image" sizes="(max-width: 800px) 100vw, 60vw" />
       <div className="chrom-family-copy">
