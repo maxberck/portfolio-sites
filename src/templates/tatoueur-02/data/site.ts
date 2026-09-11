@@ -16,8 +16,8 @@ export const galleryWorks: GalleryWork[] = [
     style: "Botanical",
     artist: "Elise Rowan",
     caption: "A single botanical line following the inside of the forearm, drawn to stay light around the wrist.",
-    image: { src: "https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?auto=format&fit=crop&w=1200&q=85", alt: "Fine tattoo work photographed close to the skin", width: 1200, height: 1500 },
-    detailImage: { src: "https://images.unsplash.com/photo-1612459284970-e8f027596582?auto=format&fit=crop&w=1000&q=85", alt: "Close detail of precise black tattoo lines", width: 1000, height: 1200 },
+    image: { src: "https://images.unsplash.com/photo-1736628495264-2728d5582aa2?auto=format&fit=crop&w=1200&q=85", alt: "Fine-line tattoo being applied to an arm", width: 1200, height: 1500 },
+    detailImage: { src: "https://images.unsplash.com/photo-1736594623536-1994f14bfc88?auto=format&fit=crop&w=1000&q=85", alt: "Close detail of a fine-line tattoo session with gloved hands", width: 1000, height: 1200 },
   },
   {
     id: "orbit",
@@ -26,7 +26,7 @@ export const galleryWorks: GalleryWork[] = [
     style: "Fine Line",
     artist: "Noa Verne",
     caption: "A restrained circular composition placed above the elbow with thin line weight and open skin.",
-    image: { src: "https://images.unsplash.com/photo-1560707854-fb9a10eeaace?auto=format&fit=crop&w=1200&q=85", alt: "Minimal black tattoo photographed against skin", width: 1200, height: 1500 },
+    image: { src: "https://images.unsplash.com/photo-1736628314121-0af6d9a1d368?auto=format&fit=crop&w=1200&q=85", alt: "Close-up of a fine-line tattoo being made", width: 1200, height: 1500 },
   },
   {
     id: "small-vow",
@@ -35,7 +35,7 @@ export const galleryWorks: GalleryWork[] = [
     style: "Micro",
     artist: "Mina Sol",
     caption: "Compact custom lettering kept deliberately small and quiet beside the collarbone.",
-    image: { src: "https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?auto=format&fit=crop&w=1200&q=85", alt: "Small black lettering tattoo photographed in close-up", width: 1200, height: 1500 },
+    image: { src: "https://images.unsplash.com/photo-1736628283631-8d9c8167fa88?auto=format&fit=crop&w=1200&q=85", alt: "Small fine-line heart tattoo on a finger", width: 1200, height: 1500 },
   },
   {
     id: "thread",
@@ -44,7 +44,7 @@ export const galleryWorks: GalleryWork[] = [
     style: "Ornamental",
     artist: "Noa Verne",
     caption: "A narrow ornamental rhythm built around the natural center line rather than a fixed rectangle.",
-    image: { src: "https://images.unsplash.com/photo-1574540440621-48fbf0f60f9a?auto=format&fit=crop&w=1200&q=85", alt: "Geometric black tattoo photographed from the side", width: 1200, height: 1500 },
+    image: { src: "https://images.unsplash.com/photo-1775135655344-a13f0ef43205?auto=format&fit=crop&w=1200&q=85", alt: "Tattoo artist making a small detailed finger tattoo", width: 1200, height: 1500 },
   },
   {
     id: "after-rain",
@@ -53,7 +53,7 @@ export const galleryWorks: GalleryWork[] = [
     style: "Botanical",
     artist: "Elise Rowan",
     caption: "Two fine stems designed around the shoulder line with most of the composition left intentionally open.",
-    image: { src: "https://images.unsplash.com/photo-1542727365-19732a80dcfd?auto=format&fit=crop&w=1200&q=85", alt: "Delicate black tattoo in a dark photographic crop", width: 1200, height: 1500 },
+    image: { src: "https://images.unsplash.com/photo-1775135461973-363868f53771?auto=format&fit=crop&w=1200&q=85", alt: "Tattoo artist working carefully on a client's hand", width: 1200, height: 1500 },
   },
   {
     id: "mark-06",
@@ -62,7 +62,7 @@ export const galleryWorks: GalleryWork[] = [
     style: "Fine Line",
     artist: "Mina Sol",
     caption: "A small abstract mark refined from hand-drawn gestures and scaled for the chosen placement.",
-    image: { src: "https://images.unsplash.com/photo-1605497788044-5a32c7078486?auto=format&fit=crop&w=1200&q=85", alt: "Tattoo artist working carefully in a studio", width: 1200, height: 1500 },
+    image: { src: "https://images.unsplash.com/photo-1775135806549-201c83d8186a?auto=format&fit=crop&w=1200&q=85", alt: "Tattoo artist working on a client's neck in a studio", width: 1200, height: 1500 },
   },
 ];
 
@@ -72,7 +72,7 @@ export const galleryArtists: GalleryArtist[] = [
     name: "Elise Rowan",
     specialty: "Botanical · fine line",
     bio: "Elise works with sparse botanical references, adapting stems and leaves to the direction of the body rather than tracing a fixed drawing.",
-    portrait: { src: "https://images.unsplash.com/photo-1562962230-16e4623d36e6?auto=format&fit=crop&w=1000&q=85", alt: "Tattoo artist preparing a quiet studio station", width: 1000, height: 1250 },
+    portrait: { src: "https://images.unsplash.com/photo-1736594623536-1994f14bfc88?auto=format&fit=crop&w=1000&q=85", alt: "Fine-line tattoo artist working with gloved hands", width: 1000, height: 1250 },
     workId: "quiet-stem",
   },
   {
@@ -80,7 +80,7 @@ export const galleryArtists: GalleryArtist[] = [
     name: "Noa Verne",
     specialty: "Fine line · ornamental",
     bio: "Noa reduces ornamental references to measured lines, small repetitions and negative space with careful attention to placement.",
-    portrait: { src: "https://images.unsplash.com/photo-1605497788044-5a32c7078486?auto=format&fit=crop&w=1000&q=85", alt: "Tattoo artist focused on a detailed tattoo session", width: 1000, height: 1250 },
+    portrait: { src: "https://images.unsplash.com/photo-1775135461973-363868f53771?auto=format&fit=crop&w=1000&q=85", alt: "Tattoo artist working on a client's hand", width: 1000, height: 1250 },
     workId: "orbit",
   },
   {
@@ -88,7 +88,7 @@ export const galleryArtists: GalleryArtist[] = [
     name: "Mina Sol",
     specialty: "Micro · lettering",
     bio: "Mina develops small custom marks and lettering where scale, spacing and the amount of untouched skin matter as much as the ink.",
-    portrait: { src: "https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?auto=format&fit=crop&w=1000&q=85", alt: "Tattoo artist working on a small black tattoo", width: 1000, height: 1250 },
+    portrait: { src: "https://images.unsplash.com/photo-1775135655344-a13f0ef43205?auto=format&fit=crop&w=1000&q=85", alt: "Tattoo artist applying a small finger tattoo", width: 1000, height: 1250 },
     workId: "small-vow",
   },
 ];
