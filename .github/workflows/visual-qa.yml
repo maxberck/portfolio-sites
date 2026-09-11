@@ -3,7 +3,7 @@ name: Portfolio visual QA
 on:
   push:
     branches:
-      - feat/portfolio-swiss-brutalist
+      - feat/portfolio-home-templates-contact
     paths:
       - '.github/workflows/visual-qa.yml'
       - 'app/(portfolio)/**'
@@ -58,16 +58,16 @@ jobs:
 
           mkdir -p /tmp/portfolio-qa
           npx --yes playwright@latest screenshot --browser=chromium --viewport-size="1440,1000" --wait-for-timeout=1500 --full-page http://127.0.0.1:3000/ /tmp/portfolio-qa/home-desktop-1440-full.png
-          npx --yes playwright@latest screenshot --browser=chromium --viewport-size="768,1024" --wait-for-timeout=1500 --full-page http://127.0.0.1:3000/ /tmp/portfolio-qa/home-tablet-768-full.png
-          npx --yes playwright@latest screenshot --browser=chromium --viewport-size="375,812" --wait-for-timeout=1500 --full-page http://127.0.0.1:3000/ /tmp/portfolio-qa/home-mobile-375-full.png
-          npx --yes playwright@latest screenshot --browser=chromium --viewport-size="1440,1000" --wait-for-timeout=1500 --full-page http://127.0.0.1:3000/categories/restaurant /tmp/portfolio-qa/restaurant-desktop-1440-full.png
-          npx --yes playwright@latest screenshot --browser=chromium --viewport-size="768,1024" --wait-for-timeout=1500 --full-page http://127.0.0.1:3000/categories/restaurant /tmp/portfolio-qa/restaurant-tablet-768-full.png
-          npx --yes playwright@latest screenshot --browser=chromium --viewport-size="375,812" --wait-for-timeout=1500 --full-page http://127.0.0.1:3000/categories/restaurant /tmp/portfolio-qa/restaurant-mobile-375-full.png
+          npx --yes playwright@latest screenshot --browser=chromium --viewport-size="390,844" --wait-for-timeout=1500 --full-page http://127.0.0.1:3000/ /tmp/portfolio-qa/home-mobile-390-full.png
+          npx --yes playwright@latest screenshot --browser=chromium --viewport-size="1440,1000" --wait-for-timeout=1500 --full-page http://127.0.0.1:3000/templates /tmp/portfolio-qa/templates-desktop-1440-full.png
+          npx --yes playwright@latest screenshot --browser=chromium --viewport-size="390,844" --wait-for-timeout=1500 --full-page http://127.0.0.1:3000/templates /tmp/portfolio-qa/templates-mobile-390-full.png
+          npx --yes playwright@latest screenshot --browser=chromium --viewport-size="1440,1000" --wait-for-timeout=1500 --full-page http://127.0.0.1:3000/contact /tmp/portfolio-qa/contact-desktop-1440-full.png
+          npx --yes playwright@latest screenshot --browser=chromium --viewport-size="390,844" --wait-for-timeout=1500 --full-page http://127.0.0.1:3000/contact /tmp/portfolio-qa/contact-mobile-390-full.png
 
       - name: Upload visual QA artifact
         uses: actions/upload-artifact@v4
         with:
-          name: portfolio-editorial-brutalist-qa
+          name: portfolio-home-templates-contact-qa
           path: /tmp/portfolio-qa/*.png
           if-no-files-found: error
           retention-days: 7
