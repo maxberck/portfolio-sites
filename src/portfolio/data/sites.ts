@@ -260,9 +260,16 @@ export const portfolioSites: PortfolioSite[] = [
     name: "Line Gallery",
     category: "tatoueur",
     direction: "Minimaliste / galerie",
-    summary: "Direction prévue : blanc muséal, typographie retenue et présentation des tatouages comme une exposition d’œuvres.",
+    summary: "Fine line en galerie blanche — catalogue d’œuvres, grands espaces négatifs, dossiers d’artistes et navigation muséale discrète.",
     href: "/sites/tatoueur-02",
-    status: "planned",
+    status: "available",
+    preview: {
+      src: "/previews/tatoueur-02-home.webp",
+      alt: "Aperçu de la page d'accueil blanche et minimaliste du studio fictif Line Gallery",
+      width: 1440,
+      height: 1000,
+      focalPosition: "center top",
+    },
   },
   {
     id: "tatoueur-03",
