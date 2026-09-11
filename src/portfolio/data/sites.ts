@@ -100,9 +100,16 @@ export const portfolioSites: PortfolioSite[] = [
     name: "Carrosserie 42",
     category: "garage",
     direction: "Carrosserie & peinture",
-    summary: "Carrosserie — rayures, bosses, pare-chocs, sinistres, peinture et remise en état dans un atelier contemporain centré sur le résultat.",
+    summary: "Carrosserie et peinture — bosses, rayures, pare-chocs, préparation et remise en état dans un univers de cabine peinture et fiche de contrôle.",
     href: "/sites/garage-04",
-    status: "planned",
+    status: "available",
+    preview: {
+      src: "/previews/garage-04-home.webp",
+      alt: "Aperçu de la page d'accueil de la carrosserie et atelier peinture Carrosserie 42",
+      width: 1440,
+      height: 1000,
+      focalPosition: "center top",
+    },
   },
   {
     id: "restaurant-01",
