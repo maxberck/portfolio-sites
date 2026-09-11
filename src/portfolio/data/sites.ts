@@ -56,7 +56,7 @@ export const portfolioSites: PortfolioSite[] = [
     href: "/sites/garage-01",
     status: "available",
     preview: {
-      src: "/previews/garage-01-home.webp",
+      src: "/previews/garage-01-home.webp?v=20260911-2",
       alt: "Aperçu de la page d'accueil industrielle du garage multimarque Atelier Noir",
       width: 1440,
       height: 1000,
