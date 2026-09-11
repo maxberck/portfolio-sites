@@ -173,6 +173,6 @@ jobs:
           echo "Available selected demos: $available_count"
           echo "Real selected previews: $real_preview_count"
           echo "New-tab selected demo links: $new_tab_count"
-          test "$available_count" -eq 3
-          test "$real_preview_count" -eq 3
-          test "$new_tab_count" -eq 3
+          test "$available_count" -eq 4
+          test "$real_preview_count" -eq 4
+          test "$new_tab_count" -eq 4
