@@ -1,0 +1,1 @@
+Final exact-head verification before PR was performed on commit a167623389cd1bc2e130525ad5a794861b7f592f via GitHub Actions runs 34630005624 (Verify portfolio) and 34630005639 (Verify portfolio IA), both completed successfully. Visual QA of the unchanged application code was captured on e03ca8440ed80a8985cc705a910bff117a48d009 in run 34629629099 and inspected manually.
