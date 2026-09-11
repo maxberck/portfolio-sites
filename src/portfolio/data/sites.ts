@@ -292,8 +292,15 @@ export const portfolioSites: PortfolioSite[] = [
     name: "Matière",
     category: "tatoueur",
     direction: "Contemporain / artistique",
-    summary: "Direction prévue : composition asymétrique d’art-book, formes abstraites et photographie expérimentale centrée sur le geste.",
+    summary: "Art-book contemporain — compositions asymétriques, études de surface et de placement, navigation folio et photographie centrée sur le geste.",
     href: "/sites/tatoueur-04",
-    status: "planned",
+    status: "available",
+    preview: {
+      src: "/previews/tatoueur-04-home.webp",
+      alt: "Aperçu de la page d'accueil art-book contemporaine du studio fictif Matière",
+      width: 1440,
+      height: 1000,
+      focalPosition: "center top",
+    },
   },
 ];
