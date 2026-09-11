@@ -20,7 +20,7 @@ export function VisitPanel() {
         <p>{lineGallerySite.contact.email}</p>
         <Link className="line-text-link" href="/sites/tatoueur-02/visit">Practical information ↗</Link>
       </div>
-      <div className="line-visit-panel__space" aria-hidden="true" />
+      <div className="line-visit-panel__blank" aria-hidden="true" />
     </section>
   );
 }
