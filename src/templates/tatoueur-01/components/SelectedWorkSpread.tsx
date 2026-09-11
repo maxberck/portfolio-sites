@@ -11,7 +11,7 @@ type SelectedWorkSpreadProps = {
 export function SelectedWorkSpread({ work, variant }: SelectedWorkSpreadProps) {
   return (
     <article className={`ritual-work-spread ritual-work-spread--${variant}`}>
-      <div className="ritual-work-spread__number">{work.number} /</div>
+      <div className="ritual-work-spread__number">{`${work.number} /`}</div>
       <div className="ritual-work-spread__media">
         <BlackRitualImage image={work.image} sizes="(max-width: 760px) 100vw, 62vw" />
         {variant === "double" && work.secondaryImage ? (
