@@ -1,6 +1,6 @@
 {
-  "route": "/sites/garage-02",
-  "siteId": "garage-02",
-  "height": 1000,
+  "route": "/sites/garage-01",
+  "siteId": "garage-01",
+  "height": 1001,
   "width": 1440
 }
