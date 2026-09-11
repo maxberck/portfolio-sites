@@ -1,7 +1,7 @@
 const base = process.env.BASE_URL ?? "http://127.0.0.1:3000";
 
 const pages = [
-  ["/sites/garage-04", "CARROSSERIE & PEINTURE"],
+  ["/sites/garage-04", "Carrosserie & peinture"],
   ["/sites/garage-04/carrosserie", "CARROSSERIE"],
   ["/sites/garage-04/peinture", "PEINTURE"],
   ["/sites/garage-04/realisations", "RÉALISATIONS"],
