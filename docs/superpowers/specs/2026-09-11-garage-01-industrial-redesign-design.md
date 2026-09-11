@@ -67,3 +67,4 @@ Signal yellow is used for wayfinding, labels and calls to action rather than lar
 - Update the existing `scripts/smoke-garage01.mjs` contract so the home page must expose the new industrial markers (`BAIE 01`, `Garage multimarque`, and the signal CTA wording).
 - Existing route, noindex, iframe and form checks remain in place.
 - Run repository lint, build and Garage 01 smoke verification in CI before merge.
+- Regenerate `public/previews/garage-01-home.webp` from the final Garage 01 branch so the portfolio card reflects the redesigned page.
