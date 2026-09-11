@@ -180,9 +180,16 @@ export const portfolioSites: PortfolioSite[] = [
     name: "Maison Élise",
     category: "coiffure",
     direction: "Salon premium / élégant",
-    summary: "Direction prévue : portraits beauté éditoriaux, tons chauds neutres et composition ample inspirée des maisons de mode.",
+    summary: "Maison beauté éditoriale — portraits de coiffure, tons chauds neutres, serif expressive et compositions asymétriques inspirées des magazines beauté.",
     href: "/sites/coiffure-01",
-    status: "planned",
+    status: "available",
+    preview: {
+      src: "/previews/coiffure-01-home.webp",
+      alt: "Aperçu de la page d'accueil éditoriale du salon Maison Élise",
+      width: 1440,
+      height: 1000,
+      focalPosition: "center top",
+    },
   },
   {
     id: "coiffure-02",

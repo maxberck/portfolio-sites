@@ -1,6 +1,6 @@
 {
-  "route": "/sites/garage-04",
-  "siteId": "garage-04",
-  "height": 1001,
-  "width": 1440
+  "siteId": "coiffure-01",
+  "route": "/sites/coiffure-01",
+  "width": 1440,
+  "height": 1000
 }
