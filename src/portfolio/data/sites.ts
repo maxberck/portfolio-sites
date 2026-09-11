@@ -276,9 +276,16 @@ export const portfolioSites: PortfolioSite[] = [
     name: "Lucky XIII",
     category: "tatoueur",
     direction: "Old school / vintage",
-    summary: "Direction prévue : papier ivoire, rouge et marine, motifs de flash sheet, badges et typographie vintage.",
+    summary: "Tattoo shop old-school — flash sheets imprimées, enseigne vintage, papier ivoire, rouge profond et navigation inspirée des tickets de shop.",
     href: "/sites/tatoueur-03",
-    status: "planned",
+    status: "available",
+    preview: {
+      src: "/previews/tatoueur-03-home.webp",
+      alt: "Aperçu de la page d'accueil vintage et flash du studio fictif Lucky XIII",
+      width: 1440,
+      height: 1000,
+      focalPosition: "center top",
+    },
   },
   {
     id: "tatoueur-04",
